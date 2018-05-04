@@ -17,8 +17,12 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.jsx</code> and save to reload.
         </p>
-        <Example name="Sandra" />
-        <Visualization2 name="Sandra" />
+        <div>
+          <Example name="Sandra" />
+        </div>
+        <div id="visualization2">
+          <Visualization2 name="Sandra" />
+        </div>
       </div>
     )
   }

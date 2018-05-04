@@ -1,20 +1,29 @@
 import React from 'react'
 import * as d3 from 'd3'
+import ReactDOM from 'react-dom'
 
+//just trying out
+const zScale = d3.scaleLinear()
+.domain([0, 1200])
+.rangeRound([900, 0]);
+const zAxis = d3.axisLeft(zScale);
 
 const Visualization2 = ({name}) =>
 <div id="canvas">
   <h2 className="name">ja das geht schon mal :)</h2>
+  {/* just trying out */}
+  <g className="axis" axis={zAxis}>hkhkjhkhkjhukgkjgzi</g>
 </div>
 
 const path = "/resources/Strassenverkehrsunfaelle_Maengel_bfs.csv";
+// Beispieldaten
 let einfluss1, objektart1, strassenart1, unfallschwere1, jahr1;
-
 einfluss1 = "A: Zustand des Lenkers oder Fussg�ngers";
 objektart1 = "Personenwagen";
 strassenart1 = "Autobahn";
 unfallschwere1 = "Unfall mit leicht Verletzten";
 
+// Canvasgrösse
 const canvHeight = 550, canvWidth = 1000;
 const margin = {top: 80, right: 40, bottom: 40, left: 50}; 
 
@@ -32,6 +41,7 @@ const g = svg.append("g")
 
 const height = canvHeight - margin.top - margin.bottom;
 const width = canvWidth - margin.left - margin.right;
+
 
 
 // convert data into an array of objects
@@ -62,7 +72,6 @@ d3.csv(path, function(error, data) {
     g.append("g")
     .attr("class", "axis")
     .call(yAxis);
-
 
     // circles
     g.selectAll("circle")
