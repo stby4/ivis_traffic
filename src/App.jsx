@@ -3,6 +3,7 @@ import logo from './logo.svg'
 import './App.css'
 
 import Example from './Components/Example'
+import Visualization2 from './Components/Visualization2'
 
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
           To get started, edit <code>src/App.jsx</code> and save to reload.
         </p>
         <Example name="Sandra" />
+        <Visualization2/>
       </div>
     )
   }
