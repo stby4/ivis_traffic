@@ -18,7 +18,7 @@ class App extends Component {
           To get started, edit <code>src/App.jsx</code> and save to reload.
         </p>
         <Example name="Sandra" />
-        <Visualization2/>
+        <Visualization2 name="Sandra" />
       </div>
     )
   }
