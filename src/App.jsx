@@ -15,7 +15,7 @@ class App extends Component {
           <h1>Strassenverkehrsunfälle in der Schweiz</h1>
         </header>
         <div className="inner">
-          <div class="container" id="visualization1">
+          <div className="container" id="visualization1">
             <h2>Grafik 1</h2>
             <Visualization1/>
           </div> 
@@ -25,7 +25,7 @@ class App extends Component {
             <Visualization2/>
           </div>
         </div>
-        <footer></footer>
+        <footer className="App-footer"></footer>
       </div>
     ) 
   }

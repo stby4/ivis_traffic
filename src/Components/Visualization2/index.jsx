@@ -31,6 +31,8 @@ class Visualization2 extends Component {
 
     // convert data into an array of objects
     d3.csv(path, function (error, data) {
+      //d = data;
+      //bli = d.map(d["Mangel oder Einfluss"]);
       const einfluss = d3.extent(data, d => d["Mangel oder Einfluss"])
       const objektart = d3.extent(data, d => d["Objektart"])
       const strassenart = d3.extent(data, d => d["Strassenart"])
