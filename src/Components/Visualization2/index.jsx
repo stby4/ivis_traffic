@@ -9,8 +9,8 @@ class Visualization2 extends Component {
     canvHeight: 550,
     canvWidth: 800,
     margin: { top: 50, right: 20, bottom: 30, left: 60 },
-    height: 550-50-30,
-    width: 800-60-20,
+    height: 550 - 50 - 30,
+    width: 800 - 60 - 20,
   }
 
   static state = {
@@ -69,16 +69,12 @@ class Visualization2 extends Component {
     const { svgId, canvHeight, canvWidth, margin, height } = this.props
 
     return (
-      <div>
-        <div className="vis2">
-          <svg id={svgId} width={canvWidth} height={canvHeight} style={{ align: 'center' }}>
-            <g id="chart-area" transform={`translate(${margin.left},${margin.top})`}>
-              <g id="axisX" className="axis" transform={`translate(0,${height})`} />
-              <g id="axisY" className="axis" />
-            </g>
-          </svg>
-        </div>
-      </div>
+      <svg id={svgId} width={canvWidth} height={canvHeight} style={{ align: 'center' }}>
+        <g id="chart-area" transform={`translate(${margin.left},${margin.top})`}>
+          <g id="axisX" className="axis" transform={`translate(0,${height})`} />
+          <g id="axisY" className="axis" />
+        </g>
+      </svg>
     )
   }
 }
