@@ -1,0 +1,9 @@
+.canton {
+    fill: whitesmoke;
+}
+
+.cantonBoundary {
+    fill: none;
+    stroke: black;
+    stroke-linejoin: round;
+}
