@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3'
-import ReactDOM from 'react-dom'
 
 class Visualization2 extends Component {
   static defaultProps = {
     svgId: 'canvas',
-    path: '/data/Strassenverkehrsunfaelle_Maengel_bfs.csv',
+    path: `${process.env.PUBLIC_URL}/StrassenverkehrsunfaelleMaengel.csv`,
     canvHeight: 550,
     canvWidth: 800,
     margin: { top: 50, right: 20, bottom: 30, left: 60 },
@@ -24,17 +23,17 @@ class Visualization2 extends Component {
   componentDidMount() {
 
     // TRYING OUT STUFF
-    var filteredData;
-    d3.csv("/data/StrassenverkehrsunfaelleMaengel.csv", function(data) {
-      console.log("1.Zeile: "+data[0]);       // Warum ist das undefined??
-      // filteredData = data[4].Unfalltyp;
-      // console.log(filteredData);
-      // data = data.filter(function(row) {
-      //  return row['Mangel oder Einfluss'] == 'A: Zustand des Lenkers oder Fussgängers';
-      // });
-      // var dataset = data;
-      // var filteredData = data.prototype.filter(function (d) { return d["Mangel oder Einfluss"] == "A: Zustand des Lenkers oder Fussgängers"});
-    });
+    let filteredData
+    const d = d3.csv(`${process.env.PUBLIC_URL}/StrassenverkehrsunfaelleMaengel.csv`, function (data) {
+      console.log("1.Zeile: " + data[0])      // Warum ist das undefined?? - data ist ein Object, kein array.
+      // const unfaltyp = data[4].Unfalltyp - so nicht, sondern:
+      const unfalltyp = data['Unfalltyp']
+      // console.log(unfalltyp)
+    })
+    debugger
+    d.then(data => {
+      filteredData = data.filter(row => row['Mangel oder Einfluss'] == 'A: Zustand des Lenkers oder Fussgängers')
+    })
     // END OF TRYING OUT
 
     const { path, svgId, canvHeight, canvWidth, margin, height, width } = this.props
