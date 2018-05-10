@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 class Visualization2 extends Component {
   static defaultProps = {
     svgId: 'canvas',
-    path: '/resources/Strassenverkehrsunfaelle_Maengel_bfs.csv',
+    path: '/data/Strassenverkehrsunfaelle_Maengel_bfs.csv',
     canvHeight: 550,
     canvWidth: 800,
     margin: { top: 50, right: 20, bottom: 30, left: 60 },
@@ -22,6 +22,21 @@ class Visualization2 extends Component {
   }
 
   componentDidMount() {
+
+    // TRYING OUT STUFF
+    var filteredData;
+    d3.csv("/data/StrassenverkehrsunfaelleMaengel.csv", function(data) {
+      console.log("1.Zeile: "+data[0]);       // Warum ist das undefined??
+      // filteredData = data[4].Unfalltyp;
+      // console.log(filteredData);
+      // data = data.filter(function(row) {
+      //  return row['Mangel oder Einfluss'] == 'A: Zustand des Lenkers oder Fussgängers';
+      // });
+      // var dataset = data;
+      // var filteredData = data.prototype.filter(function (d) { return d["Mangel oder Einfluss"] == "A: Zustand des Lenkers oder Fussgängers"});
+    });
+    // END OF TRYING OUT
+
     const { path, svgId, canvHeight, canvWidth, margin, height, width } = this.props
 
     const zScale = d3.scaleLinear()
@@ -31,8 +46,7 @@ class Visualization2 extends Component {
 
     // convert data into an array of objects
     d3.csv(path, function (error, data) {
-      //d = data;
-      //bli = d.map(d["Mangel oder Einfluss"]);
+
       const einfluss = d3.extent(data, d => d["Mangel oder Einfluss"])
       const objektart = d3.extent(data, d => d["Objektart"])
       const strassenart = d3.extent(data, d => d["Strassenart"])
