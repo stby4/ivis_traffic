@@ -46,11 +46,22 @@ class Visualization2 extends Component {
 
       // TRY OUT HERE
       let filteredData = data.filter(row => row['Mangel oder Einfluss'] === einfluss1)
-      console.log("Show me some data: " + filteredData)
       filteredData = filteredData.filter(row => row['Objektart'] === objektart1)
       filteredData = filteredData.filter(row => row['Strassenart'] === strassenart1)
       filteredData = filteredData.filter(row => row['Unfallschwere'] === unfallschwere1)
-      console.log("Show me some data: " + filteredData)
+      console.log("Show me some data, Unfallschwere: " + filteredData)
+      filteredData = filteredData.filter(row => row['Unfalltyp'] === 'Schleuder-, Selbstunfall')
+      console.log("Show me some data, nur noch 1 Zeile mit Unfalltyp: " + filteredData)
+      console.log("Show me some data, 1 Feld: " + filteredData[0]['1992'])
+
+      var colsYears = data.map(function(d) {
+        return {
+          1992: d['1992'],
+          1993: d['1993'],
+          1994: d['1994'],
+          1995: d['1995']
+        }
+      });
 
 
       const einfluss = d3.extent(data, d => d["Mangel oder Einfluss"])
@@ -83,10 +94,10 @@ class Visualization2 extends Component {
       g.select("#axisY").call(yAxis) // evtl. umschreiben, so dass select nicht mehr verwendet wird
 
       g.selectAll("circle") // evtl. umschreiben, so das selectAll nicht mehr verwendet wird
-        .data(exampleData)
+        .data(filteredData)
         .enter().append("circle")
-        .attr("cx", d => d.count)
-        .attr("cy", 200)
+        .attr("cx", 50)
+        .attr("cy", d => yScale(d['1992']))
         .attr("r", 4)
         .style("fill", "#b0cccc")
     }
