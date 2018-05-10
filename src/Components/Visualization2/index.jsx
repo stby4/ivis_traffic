@@ -38,17 +38,22 @@ class Visualization2 extends Component {
         this.setState({ data: data }) // now this.state.data can be used in the render() function
       })
 
-    // let filteredData
-    // const d = d3.csv(`${process.env.PUBLIC_URL}/StrassenverkehrsunfaelleMaengel.csv`, data => {
-    //   // console.log("1.Zeile: " + data[0])      // Warum ist das undefined?? - data ist ein Object, kein array.
-    //   // const unfaltyp = data[4].Unfalltyp - so nicht, sondern:
-    //   const unfalltyp = data['Unfalltyp']
-    //   // console.log(unfalltyp)
-    // })
-    // debugger
-    // d.then(data => {
-    //   filteredData = data.filter(row => row['Mangel oder Einfluss'] == 'A: Zustand des Lenkers oder Fussgängers')
-    // })
+    let filteredData
+    const d = d3.csv(`${process.env.PUBLIC_URL}/StrassenverkehrsunfaelleMaengel.csv`, data => {
+      // console.log("1.Zeile: " + data[0])      // Warum ist das undefined?? - data ist ein Object, kein array.
+      // const unfaltyp = data[4].Unfalltyp - so nicht, sondern:
+      const unfalltyp = data['Unfalltyp']
+      //console.log(unfalltyp)
+    })
+   
+    d.then(data => {
+      filteredData = data.filter(row => row['Mangel oder Einfluss'] == this.state.einfluss1)
+      console.log("Show me some data: "+filteredData)
+      filteredData = filteredData.filter(row => row['Objektart'] == this.state.objektart1)
+      filteredData = filteredData.filter(row => row['Strassenart'] == this.state.strassenart1)
+      filteredData = filteredData.filter(row => row['Unfallschwere'] == this.state.unfallschwere1)
+      console.log("Show me some data: "+filteredData)
+    })
     // END OF TRYING OUT
 
     const { path, svgId, canvHeight, canvWidth, margin, height, width } = this.props
@@ -57,9 +62,18 @@ class Visualization2 extends Component {
       .domain([0, 1200])
       .rangeRound([900, 0])
     const zAxis = d3.axisLeft(zScale)
+
+    
   }
 
   render() {
+    var exampleData = [
+      {"count" : 200},
+      {"count" : 300},
+      {"count" : 400},
+      {"count" : 500}
+    ];
+
     const { svgId, canvHeight, canvWidth, margin, width, height } = this.props
     const { data } = this.state
 
@@ -89,9 +103,9 @@ class Visualization2 extends Component {
       g.select("#axisY").call(yAxis) // evtl. umschreiben, so dass select nicht mehr verwendet wird
 
       g.selectAll("circle") // evtl. umschreiben, so das selectAll nicht mehr verwendet wird
-        .data(jahr1992)
+        .data(exampleData)
         .enter().append("circle")
-        .attr("cx", 200)
+        .attr("cx", d => d.count)
         .attr("cy", 200)
         .attr("r", 4)
         .style("fill", "#b0cccc")
