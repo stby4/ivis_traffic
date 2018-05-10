@@ -12,28 +12,43 @@ class Visualization2 extends Component {
     width: 800 - 60 - 20,
   }
 
-  static state = {
-    einfluss1: "A: Zustand des Lenkers oder Fussgängers",
-    objektart1: "Personenwagen",
-    strassenart1: "Autobahn",
-    unfallschwere1: "Unfall mit leicht Verletzten",
-    jahr1: 2018
+  constructor(props) {
+    super(props)
+    this.state = {
+      einfluss1: "A: Zustand des Lenkers oder Fussgängers",
+      objektart1: "Personenwagen",
+      strassenart1: "Autobahn",
+      unfallschwere1: "Unfall mit leicht Verletzten",
+      jahr1: 2018,
+      data: null,
+    }
   }
 
   componentDidMount() {
 
     // TRYING OUT STUFF
-    let filteredData
-    const d = d3.csv(`${process.env.PUBLIC_URL}/StrassenverkehrsunfaelleMaengel.csv`, function (data) {
-      console.log("1.Zeile: " + data[0])      // Warum ist das undefined?? - data ist ein Object, kein array.
-      // const unfaltyp = data[4].Unfalltyp - so nicht, sondern:
-      const unfalltyp = data['Unfalltyp']
-      // console.log(unfalltyp)
-    })
-    debugger
-    d.then(data => {
-      filteredData = data.filter(row => row['Mangel oder Einfluss'] == 'A: Zustand des Lenkers oder Fussgängers')
-    })
+    // fetch(this.props.path)
+    //   .then(response => response.text())
+    //   .then(data => {
+    //     this.setState({ data: d3.csvParse(data) }) // now this.state.data can be used in the render() function
+    //   })
+
+    d3.csv(this.props.path)
+      .then(data => {
+        this.setState({ data: data }) // now this.state.data can be used in the render() function
+      })
+
+    // let filteredData
+    // const d = d3.csv(`${process.env.PUBLIC_URL}/StrassenverkehrsunfaelleMaengel.csv`, data => {
+    //   // console.log("1.Zeile: " + data[0])      // Warum ist das undefined?? - data ist ein Object, kein array.
+    //   // const unfaltyp = data[4].Unfalltyp - so nicht, sondern:
+    //   const unfalltyp = data['Unfalltyp']
+    //   // console.log(unfalltyp)
+    // })
+    // debugger
+    // d.then(data => {
+    //   filteredData = data.filter(row => row['Mangel oder Einfluss'] == 'A: Zustand des Lenkers oder Fussgängers')
+    // })
     // END OF TRYING OUT
 
     const { path, svgId, canvHeight, canvWidth, margin, height, width } = this.props
@@ -42,10 +57,13 @@ class Visualization2 extends Component {
       .domain([0, 1200])
       .rangeRound([900, 0])
     const zAxis = d3.axisLeft(zScale)
+  }
 
-    // convert data into an array of objects
-    d3.csv(path, function (error, data) {
+  render() {
+    const { svgId, canvHeight, canvWidth, margin, width, height } = this.props
+    const { data } = this.state
 
+    if (null !== data) {
       const einfluss = d3.extent(data, d => d["Mangel oder Einfluss"])
       const objektart = d3.extent(data, d => d["Objektart"])
       const strassenart = d3.extent(data, d => d["Strassenart"])
@@ -68,20 +86,16 @@ class Visualization2 extends Component {
       g.select("#axisX").call(xAxis)
 
       const yAxis = d3.axisLeft(yScale)
-      g.select("#axisY").call(yAxis)
+      g.select("#axisY").call(yAxis) // evtl. umschreiben, so dass select nicht mehr verwendet wird
 
-      g.selectAll("circle")
+      g.selectAll("circle") // evtl. umschreiben, so das selectAll nicht mehr verwendet wird
         .data(jahr1992)
         .enter().append("circle")
         .attr("cx", 200)
         .attr("cy", 200)
         .attr("r", 4)
         .style("fill", "#b0cccc")
-    })
-  }
-
-  render() {
-    const { svgId, canvHeight, canvWidth, margin, height } = this.props
+    }
 
     return (
       <svg id={svgId} width={canvWidth} height={canvHeight} style={{ align: 'center' }}>
@@ -89,7 +103,7 @@ class Visualization2 extends Component {
           <g id="axisX" className="axis" transform={`translate(0,${height})`} />
           <g id="axisY" className="axis" />
         </g>
-      </svg>
+      </svg >
     )
   }
 }
