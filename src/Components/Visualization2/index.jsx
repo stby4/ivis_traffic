@@ -15,7 +15,7 @@ class Visualization2 extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      einfluss1: "A: Zustand des Lenkers oder Fussgängers",
+      einfluss1: "A: Zustand des Lenkers oder Fussgaengers",
       objektart1: "Personenwagen",
       strassenart1: "Autobahn",
       unfallschwere1: "Unfall mit leicht Verletzten",
@@ -40,17 +40,16 @@ class Visualization2 extends Component {
     ]
 
     const { svgId, canvHeight, canvWidth, margin, width, height } = this.props
-    const { data } = this.state
+    const { data, einfluss1, objektart1, strassenart1, unfallschwere1 } = this.state
 
     if (null !== data) {
 
       // TRY OUT HERE
-      debugger
-      let filteredData = data.filter(row => row['Mangel oder Einfluss'] === this.state.einfluss1)
+      let filteredData = data.filter(row => row['Mangel oder Einfluss'] === einfluss1)
       console.log("Show me some data: " + filteredData)
-      filteredData = filteredData.filter(row => row['Objektart'] === this.state.objektart1)
-      filteredData = filteredData.filter(row => row['Strassenart'] === this.state.strassenart1)
-      filteredData = filteredData.filter(row => row['Unfallschwere'] === this.state.unfallschwere1)
+      filteredData = filteredData.filter(row => row['Objektart'] === objektart1)
+      filteredData = filteredData.filter(row => row['Strassenart'] === strassenart1)
+      filteredData = filteredData.filter(row => row['Unfallschwere'] === unfallschwere1)
       console.log("Show me some data: " + filteredData)
 
 
