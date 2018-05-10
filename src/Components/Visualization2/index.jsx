@@ -25,59 +25,35 @@ class Visualization2 extends Component {
   }
 
   componentDidMount() {
-
-    // TRYING OUT STUFF
-    // fetch(this.props.path)
-    //   .then(response => response.text())
-    //   .then(data => {
-    //     this.setState({ data: d3.csvParse(data) }) // now this.state.data can be used in the render() function
-    //   })
-
     d3.csv(this.props.path)
       .then(data => {
         this.setState({ data: data }) // now this.state.data can be used in the render() function
       })
-
-    let filteredData
-    const d = d3.csv(`${process.env.PUBLIC_URL}/StrassenverkehrsunfaelleMaengel.csv`, data => {
-      // console.log("1.Zeile: " + data[0])      // Warum ist das undefined?? - data ist ein Object, kein array.
-      // const unfaltyp = data[4].Unfalltyp - so nicht, sondern:
-      const unfalltyp = data['Unfalltyp']
-      //console.log(unfalltyp)
-    })
-   
-    d.then(data => {
-      filteredData = data.filter(row => row['Mangel oder Einfluss'] == this.state.einfluss1)
-      console.log("Show me some data: "+filteredData)
-      filteredData = filteredData.filter(row => row['Objektart'] == this.state.objektart1)
-      filteredData = filteredData.filter(row => row['Strassenart'] == this.state.strassenart1)
-      filteredData = filteredData.filter(row => row['Unfallschwere'] == this.state.unfallschwere1)
-      console.log("Show me some data: "+filteredData)
-    })
-    // END OF TRYING OUT
-
-    const { path, svgId, canvHeight, canvWidth, margin, height, width } = this.props
-
-    const zScale = d3.scaleLinear()
-      .domain([0, 1200])
-      .rangeRound([900, 0])
-    const zAxis = d3.axisLeft(zScale)
-
-    
   }
 
   render() {
     var exampleData = [
-      {"count" : 200},
-      {"count" : 300},
-      {"count" : 400},
-      {"count" : 500}
-    ];
+      { "count": 200 },
+      { "count": 300 },
+      { "count": 400 },
+      { "count": 500 }
+    ]
 
     const { svgId, canvHeight, canvWidth, margin, width, height } = this.props
     const { data } = this.state
 
     if (null !== data) {
+
+      // TRY OUT HERE
+      debugger
+      let filteredData = data.filter(row => row['Mangel oder Einfluss'] === this.state.einfluss1)
+      console.log("Show me some data: " + filteredData)
+      filteredData = filteredData.filter(row => row['Objektart'] === this.state.objektart1)
+      filteredData = filteredData.filter(row => row['Strassenart'] === this.state.strassenart1)
+      filteredData = filteredData.filter(row => row['Unfallschwere'] === this.state.unfallschwere1)
+      console.log("Show me some data: " + filteredData)
+
+
       const einfluss = d3.extent(data, d => d["Mangel oder Einfluss"])
       const objektart = d3.extent(data, d => d["Objektart"])
       const strassenart = d3.extent(data, d => d["Strassenart"])
@@ -94,6 +70,11 @@ class Visualization2 extends Component {
         .rangeRound([height, 0])
 
       const g = d3.select("#chart-area")
+
+      const zScale = d3.scaleLinear()
+        .domain([0, 1200])
+        .rangeRound([900, 0])
+      const zAxis = d3.axisLeft(zScale)
 
       // create xAxis and yAxis
       const xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%Y"))
