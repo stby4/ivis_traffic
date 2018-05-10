@@ -37,12 +37,22 @@ h2 {
 
 .container {
   border: 0.5px solid lightgray;
+  display: inline-block;
   margin: 15px 0;
   padding: 5px 10px;
-  /* width: 900px; */
-  /* max-width: 80%; */
+  width: 1200px;
+  max-width: 90%;
 }
 
+.label {
+  font-size: 12px;
+}
+
+#selection-area {
+  background-color: blue;
+  height: 100px;
+  width: 100px;
+}
 
 
 @keyframes App-logo-spin {
