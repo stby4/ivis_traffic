@@ -4,7 +4,7 @@ import './App.css'
 
 import Example from './Components/Example'
 import Visualization2 from './Components/Visualization2'
-import Visualization1 from './Components/Visualization1'
+import MapsVisualisation from './Components/MapsVisualisation'
 
 
 class App extends Component {
@@ -15,19 +15,16 @@ class App extends Component {
           <h1>Strassenverkehrsunfälle in der Schweiz</h1>
         </header>
         <div className="inner">
-          <div className="container" id="visualization1">
-            <h2>Grafik 1</h2>
-            <Visualization1/>
-          </div> 
+          <MapsVisualisation className="container" id="visualization1" />
 
           <div className="container" id="visualization2">
             <h2>Grafik 2</h2>
-            <Visualization2/>
+            <Visualization2 />
           </div>
         </div>
         <footer className="App-footer"></footer>
       </div>
-    ) 
+    )
   }
 }
 
