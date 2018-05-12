@@ -54,14 +54,15 @@ class Visualization2 extends Component {
       //console.log("Show me some data, nur noch 1 Zeile mit Unfalltyp: " + filteredData)
       console.log("Show me some data, 1 Feld: " + moreFilteredData[0]['1992'])
 
-      var colsYears = data.map(function (d) {
+      var colsYears = filteredData.map(function (d) {
         return {
           1992: d['1992'],
           1993: d['1993'],
           1994: d['1994'],
-          1995: d['1995']
+          1995: d['1995'],
+          1996: d['1996'],
         }
-      });
+      })
 
       const einfluss = d3.extent(data, d => d["Mangel oder Einfluss"])
       const objektart = d3.extent(data, d => d["Objektart"])
@@ -96,7 +97,7 @@ class Visualization2 extends Component {
         .attr("dy", "1em")
         .attr("font-family", "sans-serif")
         .style("text-anchor", "middle")
-        .text("Anzahl Unfälle ");
+        .text("Anzahl Unfälle ")
 
       g.append("text")
         .attr("x", width / 2)
@@ -105,18 +106,19 @@ class Visualization2 extends Component {
         .attr("dy", "1em")
         .attr("font-family", "sans-serif")
         .style("text-anchor", "middle")
-        .text("Jahre");
+        .text("Jahre")
 
-      console.log("wert?: " + colsYears[1][1992]);
+      console.log("wert?: " + colsYears[1][1992])
 
-      g.selectAll("circle") // evtl. umschreiben, so das selectAll nicht mehr verwendet wird
-        .data(filteredData)
-        .enter().append("circle")
-        // Für jedes Datum auf der x-Achse soll ein circle gezeichnet werden.
-        .attr("cx", function (d) { return xScale(d.date); })
-        .attr("cx", 60)
-        .attr("cy", d => yScale(d['1996']))
+      const theData = Object.values(filteredData[1]).slice(0, 2016 - 1992)
+      // debugger
+      g.selectAll("circle")
+        .data(theData)
+        .enter()
+        .append("circle")
         .attr("r", 4)
+        .attr("cx", (d, i) => { /*debugger;*/ return xScale(new Date('' + (1992 + i))) })
+        .attr("cy", (d, i) => { /*debugger;*/ return yScale(d) })
         .style("fill", "#b0cccc")
     }
 
