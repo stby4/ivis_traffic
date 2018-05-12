@@ -54,7 +54,7 @@ class Visualization2 extends Component {
       //console.log("Show me some data, nur noch 1 Zeile mit Unfalltyp: " + filteredData)
       console.log("Show me some data, 1 Feld: " + moreFilteredData[0]['1992'])
 
-      var colsYears = data.map(function(d) {
+      var colsYears = data.map(function (d) {
         return {
           1992: d['1992'],
           1993: d['1993'],
@@ -89,40 +89,40 @@ class Visualization2 extends Component {
       g.select("#axisY").call(yAxis) // evtl. umschreiben, so dass select nicht mehr verwendet wird
 
       g.append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("x",0 - (height / 2))
-      .attr("y", 0 - margin.left)
-      .attr("class", "label")
-      .attr("dy", "1em")
-      .attr("font-family", "sans-serif")
-      .style("text-anchor", "middle")
-      .text("Anzahl Unfälle ");
+        .attr("transform", "rotate(-90)")
+        .attr("x", 0 - (height / 2))
+        .attr("y", 0 - margin.left)
+        .attr("class", "label")
+        .attr("dy", "1em")
+        .attr("font-family", "sans-serif")
+        .style("text-anchor", "middle")
+        .text("Anzahl Unfälle ");
 
       g.append("text")
-      .attr("x", width/2)
-      .attr("y", height + 25)
-      .attr("class", "label")
-      .attr("dy", "1em")
-      .attr("font-family", "sans-serif")
-      .style("text-anchor", "middle")
-      .text("Jahre");
+        .attr("x", width / 2)
+        .attr("y", height + 25)
+        .attr("class", "label")
+        .attr("dy", "1em")
+        .attr("font-family", "sans-serif")
+        .style("text-anchor", "middle")
+        .text("Jahre");
 
-      console.log("wert?: "+ colsYears[1][1992]);
+      console.log("wert?: " + colsYears[1][1992]);
 
       g.selectAll("circle") // evtl. umschreiben, so das selectAll nicht mehr verwendet wird
         .data(filteredData)
         .enter().append("circle")
         // Für jedes Datum auf der x-Achse soll ein circle gezeichnet werden.
-        .attr("cx", function(d) { return xScale(d.date); })
+        .attr("cx", function (d) { return xScale(d.date); })
         .attr("cx", 60)
         .attr("cy", d => yScale(d['1996']))
         .attr("r", 4)
         .style("fill", "#b0cccc")
     }
-    
+
 
     return (
-      <svg id={svgId} width={canvWidth} height={canvHeight} style={{ align: 'center' }}>
+      <div>
         <div id="selection-area">
           <div>
             <select>
@@ -131,11 +131,13 @@ class Visualization2 extends Component {
             </select>
           </div>
         </div>
-        <g id="chart-area" transform={`translate(${margin.left},${margin.top})`}>
-          <g id="axisX" className="axis" transform={`translate(0,${height})`} />
-          <g id="axisY" className="axis" />
-        </g>
-      </svg >
+        <svg id={svgId} width={canvWidth} height={canvHeight} style={{ align: 'center' }}>
+          <g id="chart-area" transform={`translate(${margin.left},${margin.top})`}>
+            <g id="axisX" className="axis" transform={`translate(0,${height})`} />
+            <g id="axisY" className="axis" />
+          </g>
+        </svg>
+      </div>
     )
   }
 }
