@@ -17,10 +17,7 @@ class App extends Component {
         <div className="inner">
           <MapsVisualisation className="container" id="visualization1" />
 
-          <div className="container" id="visualization2">
-            <h2>Grafik 2</h2>
-            <Visualization2 />
-          </div>
+          <Visualization2 />
         </div>
         <footer className="App-footer"></footer>
       </div>

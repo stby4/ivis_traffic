@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3'
+import style from './style.css'
 
 class Visualization2 extends Component {
   static defaultProps = {
@@ -124,13 +125,38 @@ class Visualization2 extends Component {
 
 
     return (
-      <div>
+      <div className="container" id="visualization2">
+        <h2>Grafik 2</h2>
         <div id="selection-area">
-          <div>
-            <select>
-              <option value="bla1">bla1</option>
-              <option value="bla2">bla2</option>
-            </select>
+          <div class="selection-group">
+            <h3 class="selection-group-title">Objektart</h3>
+            <div class="selection-items" id="Objektart" role="tablist">
+              <a class="item">Personenwagen</a>
+              <a class="item">Kleinmotorrad</a>
+              <a class="item">Motorrad</a>
+              <a class="item">Fahrrad</a>
+              <a class="item">Anderes</a>
+            </div>
+          </div>
+          <div class="selection-group">
+            <h3 class="selection-group-title">Unfallschwere</h3>
+            <div class="selection-item" id="Unfallschwere" role="tablist">
+              <a class="item">leicht Verletzte</a>
+              <a class="item">schwer Verletzte</a>
+              <a class="item">Getötete</a>  
+            </div>
+          </div>
+          <div class="selection-group">
+            <h3 class="selection-group-title">Strassenart</h3>
+            <div class="selection-item" id="Strassenart" role="tablist">
+              <a class="item">Autobahn</a>
+            </div>
+          </div>
+          <div class="selection-group">
+            <h3 class="selection-group-title">Unfalltyp</h3>
+            <div class="selection-item" id="Unfalltyp" role="tablist">
+              <a class="item">Ueberholunfall</a>
+            </div>
           </div>
         </div>
         <svg id={svgId} width={canvWidth} height={canvHeight} style={{ align: 'center' }}>

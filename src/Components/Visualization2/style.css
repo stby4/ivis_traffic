@@ -1,9 +1,64 @@
+h2 {
+  text-align: left;
+  font-size: 16px;
+  font-weight: 200;
+}
+
+
 .label {
     font-size: 12px;
   }
   
-  #selection-area {
-    background-color: blue;
-    height: 100px;
-    width: 100px;
-  }
+/* 
+* Selection Area
+*/
+.container {
+  border: 0.5px solid lightgray;
+  display: inline-block;
+  margin: 15px 0;
+  padding: 5px 10px;
+  width: 1200px;
+  max-width: 90%;
+}
+
+#selection-area {
+  margin: 10px auto;
+  padding: 0;
+  text-align: left;
+  width: 80%;
+} 
+
+.selection-group {
+  display: inline-block;
+  margin: 0 10px;
+  vertical-align: text-top;
+  border: 0.5px solid lightgray;
+}
+
+.selection-group-title {
+  font-size: 14px;
+  font-weight: 400;
+  width: 140px;
+  margin: 0 0;
+  padding: 10px 20px 10px 20px;
+  border-bottom: 0.5px solid lightgray;
+}
+
+.selection-items {
+  cursor: pointer;
+  overflow-x: hidden;
+  height: 120px;
+}
+
+.item {
+  display: block;
+  font-size: 14px;
+  font-weight: 300;
+  margin: 0 0;
+  padding: 10px 20px;
+  border-bottom: 0.5px solid lightgray;
+}
+
+.item:hover {
+  background-color: #f8f9fa;
+}
