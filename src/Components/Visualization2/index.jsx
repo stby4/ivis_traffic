@@ -39,8 +39,8 @@ class Visualization2 extends Component {
     if (null !== data) {
 
       // TRY OUT HERE
-      //let filteredData = data.filter(row => row['Mangel oder Einfluss'] === einfluss1)
-      let filteredData = data.filter(row => row['Objektart'] === objektart1)
+      let filteredData = data.filter(row => row['Mangel oder Einfluss'] === einfluss1)
+       filteredData = filteredData.filter(row => row['Objektart'] === objektart1)
       let filteredData_3 = filteredData.filter(row => row['Strassenart'] === strassenart1)
       let filteredData_4 = filteredData.filter(row => row['Unfallschwere'] === unfallschwere1)
       let filteredData_5 = filteredData.filter(row => row['Unfalltyp'] === 'Schleuder-, Selbstunfall')
@@ -105,8 +105,8 @@ class Visualization2 extends Component {
         .text("Jahre")
 
 
-      for (let i in data) {
-        const theData = Object.values(data[i]).slice(0, 2016 - 1992 + 1)
+      for (let i in filteredData) {
+        const theData = Object.values(filteredData[i]).slice(0, 2016 - 1992 + 1)
       
         // Add the circles
         g.selectAll("circle")
@@ -153,7 +153,7 @@ class Visualization2 extends Component {
           </div>
           <div class="selection-group">
             <h3 class="selection-group-title">Unfallschwere</h3>
-            <select class="selection-items" id="Unfallschwere" role="tablist">
+            <select size="3" class="selection-items" id="Unfallschwere">
               <option class="item" id="Unfall mit leicht Verletzten">Unfall mit leicht Verletzten</option>
               <option class="item" id="Unfall mit schwer Verletzten">Unfall mit schwer Verletzten</option>
               <option class="item" id="Unfall mit Getoeteten">Unfall mit Getöteten</option>  
@@ -161,7 +161,7 @@ class Visualization2 extends Component {
           </div>
           <div class="selection-group">
             <h3 class="selection-group-title">Strassenart</h3>
-            <select class="selection-items" id="Strassenart" role="tablist">
+            <select size="3" class="selection-items" id="Strassenart">
               <option class="item" id="Autobahn">Autobahn</option>
               <option class="item" id="Autostrasse">Autostrasse</option>
               <option class="item" id="Hauptstrasse">Hauptstrasse</option>
@@ -171,7 +171,7 @@ class Visualization2 extends Component {
           </div>
           <div class="selection-group">
             <h3 class="selection-group-title">Unfalltyp</h3>
-            <select class="selection-items" id="Unfalltyp" role="tablist">
+            <select size="3" class="selection-items" id="Unfalltyp">
               <option class="item" id="Fussgaengerunfall">Fussgängerunfall</option>
               <option class="item" id="Schleuder-, Selbstunfall">Schleuder-, Selbstunfall</option>
               <option class="item" id="Beim Kreuzen (in Laengsrichtung)">Beim Kreuzen (in Längsrichtung)</option>

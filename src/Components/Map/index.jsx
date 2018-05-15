@@ -41,7 +41,7 @@ class Map extends Component {
             .attr("class", "canton")
             .attr("d", pathGenerator)
             .style('fill', (d, i) => {
-                debugger
+                //debugger
                 const val = data[cantonMap[d.id]][year]
                 return color(val)
             })
