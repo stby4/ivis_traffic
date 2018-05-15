@@ -41,9 +41,14 @@ class Map extends Component {
             .attr("class", "canton")
             .attr("d", pathGenerator)
             .style('fill', (d, i) => {
-                debugger
                 const val = data[cantonMap[d.id]][year]
                 return color(val)
+            })
+            .on('mouseover', (d, i) => {
+                console.info(`${d.properties.name}: ${data[cantonMap[d.id]][year]}`)
+            })
+            .on('mouseleave', (d, i) => {
+                console.info(`left ${d.properties.name}`)
             })
 
         // g.append("path.cantonBoundary")
