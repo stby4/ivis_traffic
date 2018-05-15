@@ -25,10 +25,11 @@ h2 {
   margin: 10px auto;
   padding: 0;
   text-align: left;
-  width: 80%;
+  width: 90%;
 } 
 
 .selection-group {
+  min-width: 200px;
   display: inline-block;
   margin: 0 10px;
   vertical-align: text-top;
@@ -38,7 +39,6 @@ h2 {
 .selection-group-title {
   font-size: 14px;
   font-weight: 400;
-  width: 140px;
   margin: 0 0;
   padding: 10px 20px 10px 20px;
   border-bottom: 0.5px solid lightgray;
