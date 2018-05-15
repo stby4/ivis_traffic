@@ -20,9 +20,11 @@ class Map extends Component {
         g.attr('transform', `translate(${margin.left},${margin.top})`)
 
         // color scale
-        const color = d3.scaleLinear()
-            .domain([2, 6, 6.1, 14])
-            .range(['rgb(244, 244, 244)', 'rgb(143, 172, 214)', 'rgb(177, 136, 109)', 'rgb(126, 77, 45)'])
+        const scale = d3.scaleLinear()
+            .domain([14, 0])
+            .range([0, 1])
+
+        const color = d3.interpolateRdYlBu
 
         const projection = d3.geoAlbers()
             .rotate([0, 0])
@@ -42,7 +44,7 @@ class Map extends Component {
             .attr("d", pathGenerator)
             .style('fill', (d, i) => {
                 const val = data[cantonMap[d.id]][year]
-                return color(val)
+                return color(scale(val))
             })
             .on('mouseover', (d, i) => {
                 console.info(`${d.properties.name}: ${data[cantonMap[d.id]][year]}`)

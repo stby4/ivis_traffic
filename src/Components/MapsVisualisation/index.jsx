@@ -43,7 +43,7 @@ class MapsVisualisation extends Component {
             }
         }
 
-        const years = Array(2016 - 1992).fill(1992).map((x, y) => x + y)
+        const years = Array(2016 - 1992 + 1).fill(1992).map((x, y) => x + y)
 
         return (
             <div id={id} className={className}>
@@ -51,10 +51,9 @@ class MapsVisualisation extends Component {
                 <h2>Unfälle pro 1000 registrierten Fahrzeugen</h2>
 
                 {null != country && null != data && <div className="mapsContainer">
-                    {years.map(year => <div className="map">
+                    {years.map(year => <div className="map" key={`map${year}`}>
                         <div className="mapTitle">{year}</div>
                         <Map
-                            key={`map${year}`}
                             id={`map${year}`}
                             country={country}
                             year={year}
