@@ -4,32 +4,66 @@ import style from './style.css'
 import Map from '../../Components/Map'
 
 class MapsVisualisation extends Component {
+    static defaultProps = {
+        pathTopo: `${process.env.PUBLIC_URL}/readme-swiss.json`,
+        paths: {
+            crashes: `${process.env.PUBLIC_URL}/crashes-canton.csv`,
+            amount: `${process.env.PUBLIC_URL}/amount-canton.csv`,
+        },
+    }
+
     constructor(props) {
         super(props)
         this.state = {
             country: null,
+            data: null,
+            selectedDataset: 'crashes'
         }
     }
 
     componentDidMount() {
-        d3.json(`${process.env.PUBLIC_URL}/readme-swiss.json`).then(country => {
-            this.setState({ country: country })
-        })
+        d3.json(this.props.pathTopo)
+            .then(country => {
+                this.setState({ country: country })
+            })
+
+        d3.csv(this.props.paths[this.state.selectedDataset])
+            .then(data => {
+                this.setState({ data: data })
+            })
     }
 
     render() {
         const { id, className } = this.props
-        const { country } = this.state
+        const { country, data } = this.state
+        let cantonMap = {}
 
-        const years = Array(10).fill(1992).map((x, y) => x + y) // @todo real data
+        if (null != data) {
+            for (let i = 0; i < data.length; ++i) {
+                cantonMap[data[i].Kanton] = i
+            }
+        }
+
+        const years = Array(2016 - 1992).fill(1992).map((x, y) => x + y)
 
         return (
             <div id={id} className={className}>
 
                 <h2>Grafik 1</h2>
 
-                {null != country && <div className="mapsContainer">
-                    {years.map(year => <div className="map"><Map key={`map${year}`} id={`map${year}`} country={country} width="182" height="121"/></div>)}
+                {null != country && null != data && <div className="mapsContainer">
+                    {years.map(year => <div className="map">
+                        <div className="mapTitle">{year}</div>
+                        <Map
+                            key={`map${year}`}
+                            id={`map${year}`}
+                            country={country}
+                            year={year}
+                            data={data}
+                            cantonMap={cantonMap}
+                            width="182"
+                            height="121" />
+                    </div>)}
                 </div>}
             </div>
         )

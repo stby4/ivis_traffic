@@ -3,6 +3,11 @@
     flex-wrap: wrap;
 }
 
+.mapTitle {
+    text-align: left;
+    color: rgb(9, 9, 61);
+}
+
 .map {
-    background-color: red;
+    /* background-color: red; */
 }
