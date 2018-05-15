@@ -6,11 +6,11 @@ class Visualization2 extends Component {
   static defaultProps = {
     svgId: 'canvas',
     path: `${process.env.PUBLIC_URL}/StrassenverkehrsunfaelleMaengel.csv`,
-    canvHeight: 550,
-    canvWidth: 800,
-    margin: { top: 50, right: 20, bottom: 50, left: 60 },
-    height: 550 - 50 - 50,
-    width: 800 - 60 - 20,
+    canvHeight: 720,
+    canvWidth: 1100,
+    margin: { top: 50, right: 15, bottom: 50, left: 50 },
+    height: 720 - 50 - 50,
+    width: 1100 - 50 - 15,
   }
 
   constructor(props) {
@@ -33,27 +33,20 @@ class Visualization2 extends Component {
   }
 
   render() {
-    var exampleData = [
-      { "count": 200 },
-      { "count": 300 },
-      { "count": 400 },
-      { "count": 500 }
-    ]
-
     const { svgId, canvHeight, canvWidth, margin, width, height } = this.props
     const { data, einfluss1, objektart1, strassenart1, unfallschwere1 } = this.state
 
     if (null !== data) {
 
       // TRY OUT HERE
-      let filteredData = data.filter(row => row['Mangel oder Einfluss'] === einfluss1)
-      filteredData = filteredData.filter(row => row['Objektart'] === objektart1)
-      filteredData = filteredData.filter(row => row['Strassenart'] === strassenart1)
-      filteredData = filteredData.filter(row => row['Unfallschwere'] === unfallschwere1)
-      console.log("Show me some data, Unfallschwere: " + filteredData)
-      let moreFilteredData = filteredData.filter(row => row['Unfalltyp'] === 'Schleuder-, Selbstunfall')
-      //console.log("Show me some data, nur noch 1 Zeile mit Unfalltyp: " + filteredData)
-      console.log("Show me some data, 1 Feld: " + moreFilteredData[0]['1992'])
+      //let filteredData = data.filter(row => row['Mangel oder Einfluss'] === einfluss1)
+      let filteredData = data.filter(row => row['Objektart'] === objektart1)
+      let filteredData_3 = filteredData.filter(row => row['Strassenart'] === strassenart1)
+      let filteredData_4 = filteredData.filter(row => row['Unfallschwere'] === unfallschwere1)
+      let filteredData_5 = filteredData.filter(row => row['Unfalltyp'] === 'Schleuder-, Selbstunfall')
+      console.log("Show me some data, Unfallschwere: " + filteredData_4)
+      console.log("Show me some data, nur noch 1 Zeile mit Unfalltyp: " + filteredData_5)
+      console.log("Show me some data, 1 Feld: " + filteredData_5[0]['1992'])
 
       // Das brauchen wir nicht, oder?
       const einfluss = d3.extent(data, d => d["Mangel oder Einfluss"])
@@ -62,15 +55,16 @@ class Visualization2 extends Component {
       const unfallschwere = d3.extent(data, d => d["Unfallschwere"])
       const jahr1992 = d3.extent(data, d => d["1992"])
 
+
       // create scale for x direction
       const xScale = d3.scaleTime()
-        .domain([new Date("1991"), new Date("2016")])
-        .rangeRound([0, width])
+        .domain([new Date("1992"), new Date("2016")])
+        .rangeRound([2, width])
 
       // create scale for y direction
       const yScale = d3.scaleLinear()
-        .domain([0, 800])
-        .rangeRound([height, 0])
+        .domain([0, 600])
+        .rangeRound([height-2, 0])
 
       // select chart-area
       const g = d3.select("#chart-area")
@@ -110,27 +104,31 @@ class Visualization2 extends Component {
         .style("text-anchor", "middle")
         .text("Jahre")
 
-      const theData = Object.values(filteredData[1]).slice(0, 2016 - 1992)
-      
-      // Add the circles
-      g.selectAll("circle")
-        .data(theData)
-        .enter()
-        .append("circle")
-        .attr("r", 4)
-        .attr("cx", (d, i) => { /*debugger;*/ return xScale(new Date('' + (1992 + i))) })
-        .attr("cy", (d, i) => { /*debugger;*/ return yScale(d) })
-        .style("fill", "#F0F0F0")
 
-      // Add the valueline path.
-      g.append("path")
-        .data([theData])
-        .attr("class", "lines")
-        .attr("stroke", "#F0F0F0")
-        .attr("stroke-width", "1.5px")
-        .attr("fill", "none")
-        .attr("d", valueline)
+      for (let i in data) {
+        const theData = Object.values(data[i]).slice(0, 2016 - 1992 + 1)
+      
+        // Add the circles
+        g.selectAll("circle")
+          .data(theData)
+          .enter()
+          .append("circle")
+          .attr("r", 4)
+          .attr("cx", (d, i) => { return xScale(new Date('' + (1992 + i))) })
+          .attr("cy", (d, i) => { return yScale(d) })
+          .style("fill", "#F0F0F0")
+  
+        // Add the valueline path.
+        g.append("path")
+          .data([theData])
+          .attr("class", "lines")
+          .attr("stroke", "#F0F0F0")
+          .attr("stroke-width", "1.5px")
+          .attr("fill", "none")
+          .attr("d", valueline)
+      }
     }
+
 
 
     return (
@@ -139,53 +137,52 @@ class Visualization2 extends Component {
         <div id="selection-area">
           <div class="selection-group">
             <h3 class="selection-group-title">Objektart</h3>
-            <div class="selection-items" id="Objektart" role="tablist">
-              <a class="item" id="Personenwagen">Personenwagen</a>
-              <a class="item" id="Personentransportfahrzeuge">Personentransportfahrzeuge</a>
-              <a class="item" id="Sachentransportfahrzeuge">Sachentransportfahrzeuge</a>
-              <a class="item" id="Kleinmotorrad">Kleinmotorrad</a>
-              <a class="item" id="Motorrad bis 125 ccm">Motorrad bis 125 ccm</a>
-              <a class="item" id="Motorrad über 125 ccm">Motorrad über 125 ccm</a>
-              <a class="item" id="Fahrrad">Fahrrad</a>
-              <a class="item" id="Motorfahrrad">Motorfahrrad</a>
-              <a class="item" id="FussgängerIn">FussgängerIn</a>
-              <a class="item" id="Anderes nicht motorisiertes Fahrzeug">Anderes nicht motorisiertes Fahrzeug</a>
-              <a class="item" id="Andere und unbekannte Fahrzeuge">Andere und unbekannte Fahrzeuge</a>
-          
-            </div>
+            <select size="3" class="selection-items" id="Objektart">
+              <option class="item" id="Personenwagen">Personenwagen</option>
+              <option class="item" id="Personentransportfahrzeuge">Personentransportfahrzeuge</option>
+              <option class="item" id="Sachentransportfahrzeuge">Sachentransportfahrzeuge</option>
+              <option class="item" id="Kleinmotorrad">Kleinmotorrad</option>
+              <option class="item" id="Motorrad bis 125 ccm">Motorrad bis 125 ccm</option>
+              <option class="item" id="Motorrad über 125 ccm">Motorrad über 125 ccm</option>
+              <option class="item" id="Fahrrad">Fahrrad</option>
+              <option class="item" id="Motorfahrrad">Motorfahrrad</option>
+              <option class="item" id="FussgängerIn">FussgängerIn</option>
+              <option class="item" id="Anderes nicht motorisiertes Fahrzeug">Anderes nicht motorisiertes Fahrzeug</option>
+              <option class="item" id="Andere und unbekannte Fahrzeuge">Andere und unbekannte Fahrzeuge</option>
+            </select>
           </div>
           <div class="selection-group">
             <h3 class="selection-group-title">Unfallschwere</h3>
-            <div class="selection-items" id="Unfallschwere" role="tablist">
-              <a class="item" id="Unfall mit leicht Verletzten">Unfall mit leicht Verletzten</a>
-              <a class="item" id="Unfall mit schwer Verletzten">Unfall mit schwer Verletzten</a>
-              <a class="item" id="Unfall mit Getoeteten">Unfall mit Getöteten</a>  
-            </div>
+            <select class="selection-items" id="Unfallschwere" role="tablist">
+              <option class="item" id="Unfall mit leicht Verletzten">Unfall mit leicht Verletzten</option>
+              <option class="item" id="Unfall mit schwer Verletzten">Unfall mit schwer Verletzten</option>
+              <option class="item" id="Unfall mit Getoeteten">Unfall mit Getöteten</option>  
+            </select>
           </div>
           <div class="selection-group">
             <h3 class="selection-group-title">Strassenart</h3>
-            <div class="selection-items" id="Strassenart" role="tablist">
-              <a class="item" id="Autobahn">Autobahn</a>
-              <a class="item" id="Autostrasse">Autostrasse</a>
-              <a class="item" id="Hauptstrasse">Hauptstrasse</a>
-              <a class="item" id="Nebenstrasse">Nebenstrasse</a>
-              <a class="item" id="Andere Strasse">Andere Strasse</a>
-            </div>
+            <select class="selection-items" id="Strassenart" role="tablist">
+              <option class="item" id="Autobahn">Autobahn</option>
+              <option class="item" id="Autostrasse">Autostrasse</option>
+              <option class="item" id="Hauptstrasse">Hauptstrasse</option>
+              <option class="item" id="Nebenstrasse">Nebenstrasse</option>
+              <option class="item" id="Andere Strasse">Andere Strasse</option>
+            </select>
           </div>
           <div class="selection-group">
             <h3 class="selection-group-title">Unfalltyp</h3>
-            <div class="selection-items" id="Unfalltyp" role="tablist">
-              <a class="item" id="Fussgaengerunfall">Fussgängerunfall</a>
-              <a class="item" id="Schleuder-, Selbstunfall">Schleuder-, Selbstunfall</a>
-              <a class="item" id="Beim Kreuzen (in Laengsrichtung)">Beim Kreuzen (in Längsrichtung)</a>
-              <a class="item" id="Ueberholunfall">Überholunfall</a>
-              <a class="item" id="Auffahrunfall">Auffahrunfall</a>
-              <a class="item" id="Beim Vorbeifahren, Fahrstreifenwechsel">Beim Vorbeifahren, Fahrstreifenwechsel</a>
-              <a class="item" id="Beim Richtungswechsel (mit Abbiegen)">Beim Richtungswechsel (mit Abbiegen)</a>
-              <a class="item" id="Beim Queren (ohne Abbiegen)">Beim Queren (ohne Abbiegen)</a>
-              <a class="item" id="Tierunfall">Tierunfall</a>
-              <a class="item" id="Andere">Andere</a>
-            </div>
+            <select class="selection-items" id="Unfalltyp" role="tablist">
+              <option class="item" id="Fussgaengerunfall">Fussgängerunfall</option>
+              <option class="item" id="Schleuder-, Selbstunfall">Schleuder-, Selbstunfall</option>
+              <option class="item" id="Beim Kreuzen (in Laengsrichtung)">Beim Kreuzen (in Längsrichtung)</option>
+              <option class="item" id="Ueberholunfall">Überholunfall</option>
+              <option class="item" id="Auffahrunfall">Auffahrunfall</option>
+              <option class="item" id="Beim Vorbeifahren, Fahrstreifenwechsel">Beim Vorbeifahren, Fahrstreifenwechsel</option>
+              <option class="item" id="Beim Richtungswechsel (mit Abbiegen)">Beim Richtungswechsel (mit Abbiegen)</option>
+              <option class="item" id="Beim Queren (ohne Abbiegen)">Beim Queren (ohne Abbiegen)</option>
+              <option class="item" id="Tierunfall">Tierunfall</option>
+              <option class="item" id="Andere">Andere</option>
+            </select>
           </div>
         </div>
         <svg id={svgId} width={canvWidth} height={canvHeight} style={{ align: 'center' }}>

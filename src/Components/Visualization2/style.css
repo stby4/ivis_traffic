@@ -22,7 +22,7 @@ h2 {
 }
 
 #selection-area {
-  margin: 10px auto;
+  margin: 25px auto;
   padding: 0;
   text-align: left;
   width: 90%;
@@ -45,12 +45,14 @@ h2 {
 }
 
 .selection-items {
+  border: 0;
   cursor: pointer;
   overflow-x: hidden;
   height: 120px;
 }
 
 .item {
+  height: 14.5px;
   display: block;
   font-size: 14px;
   font-weight: 300;
