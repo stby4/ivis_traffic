@@ -133,7 +133,9 @@ class Visualization2 extends Component {
 
     return (
       <div className="container" id="visualization2">
+        
         <h2>Grafik 2</h2>
+        
         <div id="selection-area">
           <div class="selection-group">
             <h3 class="selection-group-title">Objektart</h3>
