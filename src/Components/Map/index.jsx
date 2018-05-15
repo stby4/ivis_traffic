@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import * as d3 from 'd3'
 import * as topojson from 'topojson'
 import { withFauxDOM } from 'react-faux-dom'
-import style from './style.css'
+import './style.css'
 
 
 class Map extends Component {
@@ -20,9 +20,11 @@ class Map extends Component {
         g.attr('transform', `translate(${margin.left},${margin.top})`)
 
         // color scale
-        const color = d3.scaleLinear()
-            .domain([0, 3600])
-            .range(["white", "rgb(9, 9, 61)"]);
+        const scale = d3.scaleLinear()
+            .domain([14, 0])
+            .range([0, 1])
+
+        const color = d3.interpolateRdYlBu
 
         const projection = d3.geoAlbers()
             .rotate([0, 0])
@@ -43,7 +45,13 @@ class Map extends Component {
             .style('fill', (d, i) => {
                 //debugger
                 const val = data[cantonMap[d.id]][year]
-                return color(val)
+                return color(scale(val))
+            })
+            .on('mouseover', (d, i) => {
+                console.info(`${d.properties.name}: ${data[cantonMap[d.id]][year]}`)
+            })
+            .on('mouseleave', (d, i) => {
+                console.info(`left ${d.properties.name}`)
             })
 
         // g.append("path.cantonBoundary")

@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3'
-import style from './style.css'
+import './style.css'
+
 import Map from '../../Components/Map'
 
 class MapsVisualisation extends Component {
     static defaultProps = {
-        pathTopo: `${process.env.PUBLIC_URL}/readme-swiss.json`,
         paths: {
+            topo: `${process.env.PUBLIC_URL}/readme-swiss.json`,
             crashes: `${process.env.PUBLIC_URL}/crashes-canton.csv`,
-            amount: `${process.env.PUBLIC_URL}/amount-canton.csv`,
         },
     }
 
@@ -22,7 +22,7 @@ class MapsVisualisation extends Component {
     }
 
     componentDidMount() {
-        d3.json(this.props.pathTopo)
+        d3.json(this.props.paths.topo)
             .then(country => {
                 this.setState({ country: country })
             })
@@ -44,18 +44,17 @@ class MapsVisualisation extends Component {
             }
         }
 
-        const years = Array(2016 - 1992).fill(1992).map((x, y) => x + y)
+        const years = Array(2016 - 1993 + 1).fill(1993).map((x, y) => x + y)
 
         return (
             <div id={id} className={className}>
 
-                <h2>Grafik 1</h2>
+                <h2>Unfälle pro 1000 registrierten Fahrzeugen</h2>
 
                 {null != country && null != data && <div className="mapsContainer">
-                    {years.map(year => <div className="map">
+                    {years.map(year => <div className="map" key={`map${year}`}>
                         <div className="mapTitle">{year}</div>
                         <Map
-                            key={`map${year}`}
                             id={`map${year}`}
                             country={country}
                             year={year}
