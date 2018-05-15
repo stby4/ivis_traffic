@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import './App.css'
 
-import Example from './Components/Example'
 import Visualization2 from './Components/Visualization2'
 import MapsVisualisation from './Components/MapsVisualisation'
 

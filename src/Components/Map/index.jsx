@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import * as d3 from 'd3'
 import * as topojson from 'topojson'
 import { withFauxDOM } from 'react-faux-dom'
-import style from './style.css'
+import './style.css'
 
 
 class Map extends Component {

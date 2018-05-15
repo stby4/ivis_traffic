@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3'
-import style from './style.css'
+import './style.css'
+
 import Map from '../../Components/Map'
 
 class MapsVisualisation extends Component {
@@ -43,7 +44,7 @@ class MapsVisualisation extends Component {
             }
         }
 
-        const years = Array(2016 - 1992 + 1).fill(1992).map((x, y) => x + y)
+        const years = Array(2016 - 1993 + 1).fill(1993).map((x, y) => x + y)
 
         return (
             <div id={id} className={className}>
