@@ -21,8 +21,8 @@ class Map extends Component {
 
         // color scale
         const color = d3.scaleLinear()
-            .domain([0, 3600])
-            .range(["white", "rgb(9, 9, 61)"]);
+            .domain([2, 6, 6.1, 14])
+            .range(['rgb(244, 244, 244)', 'rgb(143, 172, 214)', 'rgb(177, 136, 109)', 'rgb(126, 77, 45)'])
 
         const projection = d3.geoAlbers()
             .rotate([0, 0])

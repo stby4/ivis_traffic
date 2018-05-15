@@ -5,10 +5,9 @@ import Map from '../../Components/Map'
 
 class MapsVisualisation extends Component {
     static defaultProps = {
-        pathTopo: `${process.env.PUBLIC_URL}/readme-swiss.json`,
         paths: {
+            topo: `${process.env.PUBLIC_URL}/readme-swiss.json`,
             crashes: `${process.env.PUBLIC_URL}/crashes-canton.csv`,
-            amount: `${process.env.PUBLIC_URL}/amount-canton.csv`,
         },
     }
 
@@ -22,7 +21,7 @@ class MapsVisualisation extends Component {
     }
 
     componentDidMount() {
-        d3.json(this.props.pathTopo)
+        d3.json(this.props.paths.topo)
             .then(country => {
                 this.setState({ country: country })
             })
@@ -49,7 +48,7 @@ class MapsVisualisation extends Component {
         return (
             <div id={id} className={className}>
 
-                <h2>Grafik 1</h2>
+                <h2>Unfälle pro 1000 registrierten Fahrzeugen</h2>
 
                 {null != country && null != data && <div className="mapsContainer">
                     {years.map(year => <div className="map">
