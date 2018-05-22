@@ -95,7 +95,7 @@ class MapsVisualisation extends Component {
                     </div>
                 </form>
 
-                <ColorLegend color={colors[selectedDataset]} scale={scales[selectedDataset]} domain={domains[selectedDataset]} width={200} height={16}/>
+                <ColorLegend color={colors[selectedDataset]} domain={domains[selectedDataset]} width={200} height={16}/>
 
                 {null != country && <div className="mapsContainer">
                     {years.map(year => <div className="map" key={`map_${year}`}>
@@ -106,7 +106,6 @@ class MapsVisualisation extends Component {
                             year={year}
                             data={data}
                             cantonMap={cantonMap}
-                            selectedDataset={selectedDataset}
                             color={colors[selectedDataset]}
                             scale={scales[selectedDataset]}
                             width="182"

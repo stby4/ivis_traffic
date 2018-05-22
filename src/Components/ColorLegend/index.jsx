@@ -1,13 +1,11 @@
 import React, { PureComponent } from 'react'
-import * as d3 from 'd3'
-import ReactFauxDOM from 'react-faux-dom'
 
 import './style.css'
 
 class ColorLegend extends PureComponent {
 
     render() {
-        const {scale, color, domain, width, height} = this.props
+        const {color, domain, width, height} = this.props
 
         const cols = Array(width).fill(0).map((x, y) => x + y)
         const colorStep = 1/width

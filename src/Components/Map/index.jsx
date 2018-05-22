@@ -11,7 +11,7 @@ class Map extends Component {
     }
 
     render() {
-        const { id, width, height, selectedDataset } = this.props
+        const { id, width, height } = this.props
         const { country, margin, year, data, cantonMap, scale, color } = this.props
 
         const faux = ReactFauxDOM.createElement('g')
