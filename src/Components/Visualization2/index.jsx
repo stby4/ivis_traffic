@@ -5,7 +5,7 @@ import style from './style.css'
 class Visualization2 extends Component {
   static defaultProps = {
     svgId: 'canvas',
-    path: `${process.env.PUBLIC_URL}/data_unfaelle_ohne_mangel.csv`,
+    path: `${process.env.PUBLIC_URL}/data_unfaelle_ohne_mangel_ohne_andere_def.csv`,
     canvHeight: 1420,
     canvWidth: 1100,
     margin: { top: 700, right: 15, bottom: 50, left: 50 },
@@ -75,8 +75,8 @@ class Visualization2 extends Component {
 
       // create scale for y direction
       const yScale = d3.scaleLinear()
-        .domain([0, 1200])
-        .rangeRound([height-2, 0])
+        .domain([0, 50])
+        .rangeRound([height-5, 0])
 
       // select chart-area
       const g = d3.select("#chart-area")
@@ -116,19 +116,31 @@ class Visualization2 extends Component {
         .style("text-anchor", "middle")
         .text("Jahre")
 
+      // Add the path for the selected data.
+      let selectedData = data.filter(row => row['Objektart'] === this.state.objektart && row['Unfallschwere'] === this.state.unfallschwere && row['Strassenart'] === this.state.strassenart && row['Unfalltyp'] === this.state.unfalltyp)
+      let theData2 = Object.values(selectedData[0]).slice(0, 2016 - 1992 + 1)
 
-      for (let i in data) {
+      g.append("path")
+      .data([theData2])
+      .attr("class", "lines")
+      .attr("stroke", "#000000")
+      .attr("stroke-width", "1.5px")
+      .attr("fill", "none")
+      .attr("d", valueline)
+      
+      let selected = data.filter(row => row['Objektart'] === this.state.objektart)
+      for (let i in selected) {
         const theData = Object.values(data[i]).slice(0, 2016 - 1992 + 1)
       
         // Add the circles
-        g.selectAll("circle")
+/*         g.selectAll("circle")
           .data(theData)
           .enter()
           .append("circle")
           .attr("r", 4)
           .attr("cx", (d, i) => { return xScale(new Date('' + (1992 + i))) })
           .attr("cy", (d, i) => { return yScale(d) })
-          .style("fill", "#F0F0F0")
+          .style("fill", "#F0F0F0") */
   
         // Add the valueline path.
         g.append("path")
@@ -141,17 +153,7 @@ class Visualization2 extends Component {
       }
 
  
-      // Add the path for the selected data.
-      let selectedData = data.filter(row => row['Objektart'] === this.state.objektart && row['Unfallschwere'] === this.state.unfallschwere && row['Strassenart'] === this.state.strassenart && row['Unfalltyp'] === this.state.unfalltyp)
-      let theData2 = Object.values(selectedData[0]).slice(0, 2016 - 1992 + 1)
 
-      g.append("path")
-      .data([theData2])
-      .attr("class", "lines")
-      .attr("stroke", "#000000")
-      .attr("stroke-width", "1.5px")
-      .attr("fill", "none")
-      .attr("d", valueline)
   }
 
 
