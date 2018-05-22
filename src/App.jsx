@@ -16,6 +16,7 @@ class App extends Component {
           <MapsVisualisation className="container" id="visualization1" />
           <Visualization2 />
         </div>
+        <div id="mapTooltip" className="tooltip" />
       </div>
     )
   }

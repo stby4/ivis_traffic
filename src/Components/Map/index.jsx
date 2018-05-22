@@ -10,6 +10,18 @@ class Map extends Component {
         margin: { top: 0, right: 0, bottom: 0, left: 0 },
     }
 
+    showTooltip(data) {
+        const tooltip = d3.select('#mapTooltip')
+        tooltip.html(data)
+            .style('left', `${d3.event.pageX - 2}px`)
+            .style('top', `${d3.event.pageY - 35}px`)
+            .style('visibility', 'visible')
+    }
+
+    hideTooltip() {
+        d3.select('#mapTooltip').style('visibility', 'hidden')
+    }
+
     render() {
         const { id, width, height } = this.props
         const { country, margin, year, data, cantonMap, scale, color } = this.props
@@ -42,11 +54,11 @@ class Map extends Component {
                     const val = data[cantonMap[d.id]][year]
                     return color(scale(val))
                 })
-                .on('mouseover', (d, i) => {
-                    console.info(`${d.properties.name}: ${data[cantonMap[d.id]][year]}`)
+                .on('mouseover', d => {
+                    this.showTooltip(`${d.properties.name}: ${Math.round(data[cantonMap[d.id]][year] * 10) / 10}`)
                 })
-                .on('mouseleave', (d, i) => {
-                    console.info(`left ${d.properties.name}`)
+                .on('mouseleave', () => {
+                    this.hideTooltip()
                 })
         }
 

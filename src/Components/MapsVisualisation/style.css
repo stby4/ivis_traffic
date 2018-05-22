@@ -4,11 +4,12 @@
 }
 
 .mapTitle {
-    text-align: left;
-    color: rgb(9, 9, 61);
+    position: absolute;
+    left: 0;
+    top: 4px;
 }
 
 .map {
-    /* background-color: red; */
+    position: relative;
     border-bottom: 1px solid lightgray;
 }

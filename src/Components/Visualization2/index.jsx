@@ -152,8 +152,8 @@ class Visualization2 extends Component {
           .attr("d", valueline)
           .on("mouseover", function(d) {	
             tooltip.html(selectedObjektart[i]['Objektart'] +", "+ selectedObjektart[i]['Unfallschwere'] +", <br/>"  + selectedObjektart[i]['Strassenart'] +", "+ selectedObjektart[i]['Unfalltyp'])	
-                  .style("left", (d3.event.pageX) + "px")
-                  .style("top", (d3.event.pageY - 28) + "px")
+                  .style("left", (d3.event.pageX - 2) + "px")
+                  .style("top", (d3.event.pageY - 35) + "px")
             return tooltip.style("visibility", "visible");})					
           .on("mouseout", function(d) {		
             return tooltip.style("visibility", "hidden");});
