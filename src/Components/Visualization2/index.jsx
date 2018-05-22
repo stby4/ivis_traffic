@@ -116,21 +116,11 @@ class Visualization2 extends Component {
         .style("text-anchor", "middle")
         .text("Jahre")
 
-      // Add the path for the selected data.
-      let selectedData = data.filter(row => row['Objektart'] === this.state.objektart && row['Unfallschwere'] === this.state.unfallschwere && row['Strassenart'] === this.state.strassenart && row['Unfalltyp'] === this.state.unfalltyp)
-      let theData2 = Object.values(selectedData[0]).slice(0, 2016 - 1992 + 1)
 
-      g.append("path")
-      .data([theData2])
-      .attr("class", "lines")
-      .attr("stroke", "#000000")
-      .attr("stroke-width", "1.5px")
-      .attr("fill", "none")
-      .attr("d", valueline)
-      
       let selected = data.filter(row => row['Objektart'] === this.state.objektart)
+      
       for (let i in selected) {
-        const theData = Object.values(data[i]).slice(0, 2016 - 1992 + 1)
+        const theData = Object.values(selected[i]).slice(0, 2016 - 1992 + 1)
       
         // Add the circles
 /*         g.selectAll("circle")
@@ -153,7 +143,17 @@ class Visualization2 extends Component {
       }
 
  
+      // Add the path for the selected data.
+      let selectedData = data.filter(row => row['Objektart'] === this.state.objektart && row['Unfallschwere'] === this.state.unfallschwere && row['Strassenart'] === this.state.strassenart && row['Unfalltyp'] === this.state.unfalltyp)
+      let theData2 = Object.values(selectedData[0]).slice(0, 2016 - 1992 + 1)
 
+      g.append("path")
+      .data([theData2])
+      .attr("class", "lines")
+      .attr("stroke", "#000000")
+      .attr("stroke-width", "1.5px")
+      .attr("fill", "none")
+      .attr("d", valueline)
   }
 
 
