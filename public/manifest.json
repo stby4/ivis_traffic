@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "IVIS project",
+  "name": "Strassenverkehrsunfälle Schweiz - IVIS",
   "icons": [
     {
       "src": "favicon.ico",

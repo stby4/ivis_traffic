@@ -1,0 +1,12 @@
+.mapLegend {
+    display: inline-block;
+    line-height: 16px;
+}
+
+.mapLegendMin {
+    margin-right: 5px;
+}
+
+.mapLegendMax {
+    margin-left: 5px;
+}

@@ -3,6 +3,7 @@ import * as d3 from 'd3'
 import './style.css'
 
 import Map from '../../Components/Map'
+import ColorLegend from '../../Components/ColorLegend'
 
 class MapsVisualisation extends Component {
     static defaultProps = {
@@ -12,6 +13,21 @@ class MapsVisualisation extends Component {
             absolute: `${process.env.PUBLIC_URL}/crashes-canton-absolute.csv`,
             amount: `${process.env.PUBLIC_URL}/amount-canton-absolute.csv`,
         },
+        domains: {
+            relative: [14, 0],
+            absolute: [0, 4000],
+            amount: [0, 800000],
+        },
+        scales: {
+            relative: d3.scaleLinear().domain([14, 0]).range([0, 1]),
+            absolute: d3.scaleLinear().domain([0, 4000]).range([0, 1]),
+            amount: d3.scaleLinear().domain([0, 800000]).range([0, 1]),
+        },
+        colors: {
+            relative: d3.interpolateRdYlBu,
+            absolute: d3.interpolateReds,
+            amount: d3.interpolatePurples,
+        }
     }
 
     constructor(props) {
@@ -51,7 +67,7 @@ class MapsVisualisation extends Component {
     }
 
     render() {
-        const { id, className } = this.props
+        const { id, className, scales, colors, domains } = this.props
         const { country, data, selectedDataset } = this.state
         let cantonMap = {}
 
@@ -66,17 +82,20 @@ class MapsVisualisation extends Component {
         return (
             <div id={id} className={className}>
 
-                <h2>Unfälle pro 1000 registrierten Fahrzeugen</h2>
+                <h2>Entwicklung der Unfallzahlen</h2>
 
                 <form className="selection-area" onChange={this.handleChange}>
                     <div className="selection-group">
-                        <select size="2" class="selection-items" name="map-selection">
-                            <option value="relative" selected>Unfälle pro 1000 Fahrzeuge</option>
-                            <option value="absolute">Unfälle insgesamt</option>
-                            <option value="amount">Zugelassene Fahrzeuge</option>
+                    <h3 className="selection-group-title">Daten auswählen</h3>
+                        <select size="2" className="selection-items" name="map-selection">
+                            <option className="item" value="relative" selected>Unfälle pro 1000 Fahrzeuge</option>
+                            <option className="item" value="absolute">Unfälle insgesamt</option>
+                            <option  className="item" value="amount">Zugelassene Fahrzeuge</option>
                         </select>
                     </div>
                 </form>
+
+                <ColorLegend color={colors[selectedDataset]} scale={scales[selectedDataset]} domain={domains[selectedDataset]} width={200} height={16}/>
 
                 {null != country && <div className="mapsContainer">
                     {years.map(year => <div className="map" key={`map_${year}`}>
@@ -88,6 +107,8 @@ class MapsVisualisation extends Component {
                             data={data}
                             cantonMap={cantonMap}
                             selectedDataset={selectedDataset}
+                            color={colors[selectedDataset]}
+                            scale={scales[selectedDataset]}
                             width="182"
                             height="121" />
                     </div>)}

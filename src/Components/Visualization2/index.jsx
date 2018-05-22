@@ -163,7 +163,7 @@ class Visualization2 extends Component {
         
         <h2>Grafik 2</h2>
         
-        <div id="selection-area">
+        <div className="selection-area">
           <form onSubmit={this.handleSubmit}>
             <div className="selection-group">
               <h3 className="selection-group-title">Objektart</h3>
