@@ -8,7 +8,9 @@ class MapsVisualisation extends Component {
     static defaultProps = {
         paths: {
             topo: `${process.env.PUBLIC_URL}/readme-swiss.json`,
-            crashes: `${process.env.PUBLIC_URL}/crashes-canton.csv`,
+            relative: `${process.env.PUBLIC_URL}/crashes-canton-relative.csv`,
+            absolute: `${process.env.PUBLIC_URL}/crashes-canton-absolute.csv`,
+            amount: `${process.env.PUBLIC_URL}/amount-canton-absolute.csv`,
         },
     }
 
@@ -17,25 +19,40 @@ class MapsVisualisation extends Component {
         this.state = {
             country: null,
             data: null,
-            selectedDataset: 'crashes'
+            selectedDataset: 'relative',
         }
+
+        this.handleChange = this.handleChange.bind(this)
     }
 
     componentDidMount() {
+        this.loadDataset('relative')
+
         d3.json(this.props.paths.topo)
             .then(country => {
                 this.setState({ country: country })
             })
+    }
 
-        d3.csv(this.props.paths[this.state.selectedDataset])
+    loadDataset(selectedDataset) {
+        this.setState({ data: null })
+        d3.csv(this.props.paths[selectedDataset])
             .then(data => {
-                this.setState({ data: data })
+                this.setState({ selectedDataset: selectedDataset, data: data })
             })
+    }
+
+    handleChange(event) {
+        this.loadDataset(event.target.value)
+    }
+
+    shouldComponentUpdate() {
+        return true
     }
 
     render() {
         const { id, className } = this.props
-        const { country, data } = this.state
+        const { country, data, selectedDataset } = this.state
         let cantonMap = {}
 
         if (null != data) {
@@ -51,8 +68,18 @@ class MapsVisualisation extends Component {
 
                 <h2>Unfälle pro 1000 registrierten Fahrzeugen</h2>
 
-                {null != country && null != data && <div className="mapsContainer">
-                    {years.map(year => <div className="map" key={`map${year}`}>
+                <form className="selection-area" onChange={this.handleChange}>
+                    <div className="selection-group">
+                        <select size="2" class="selection-items" name="map-selection">
+                            <option value="relative" selected>Unfälle pro 1000 Fahrzeuge</option>
+                            <option value="absolute">Unfälle insgesamt</option>
+                            <option value="amount">Zugelassene Fahrzeuge</option>
+                        </select>
+                    </div>
+                </form>
+
+                {null != country && <div className="mapsContainer">
+                    {years.map(year => <div className="map" key={`map_${year}`}>
                         <div className="mapTitle">{year}</div>
                         <Map
                             id={`map${year}`}
@@ -60,6 +87,7 @@ class MapsVisualisation extends Component {
                             year={year}
                             data={data}
                             cantonMap={cantonMap}
+                            selectedDataset={selectedDataset}
                             width="182"
                             height="121" />
                     </div>)}
