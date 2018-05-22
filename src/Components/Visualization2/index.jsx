@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3'
-import style from './style.css'
+import './style.css'
 
 class Visualization2 extends Component {
   static defaultProps = {
@@ -47,15 +47,15 @@ class Visualization2 extends Component {
 
   render() {
     const { svgId, canvHeight, canvWidth, margin, width, height } = this.props
-    const { data, objektart1, strassenart1, unfallschwere1 } = this.state
+    const { data } = this.state
 
     if (null !== data) {
 
       // TRY OUT HERE
-      let filteredData = data.filter(row => row['Objektart'] === objektart1)
-      let filteredData_3 = filteredData.filter(row => row['Strassenart'] === strassenart1)
-      let filteredData_4 = filteredData_3.filter(row => row['Unfallschwere'] === unfallschwere1)
-      let filteredData_5 = filteredData_4.filter(row => row['Unfalltyp'] === 'Schleuder-, Selbstunfall')
+      // let filteredData = data.filter(row => row['Objektart'] === objektart1)
+      // let filteredData_3 = filteredData.filter(row => row['Strassenart'] === strassenart1)
+      // let filteredData_4 = filteredData_3.filter(row => row['Unfallschwere'] === unfallschwere1)
+      // let filteredData_5 = filteredData_4.filter(row => row['Unfalltyp'] === 'Schleuder-, Selbstunfall')
 
       // select chart-area
       const g = d3.select("#chart-area")
