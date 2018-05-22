@@ -5,11 +5,11 @@ import style from './style.css'
 class Visualization2 extends Component {
   static defaultProps = {
     svgId: 'canvas',
-    path: `${process.env.PUBLIC_URL}/data_unfaelle_ohne_mangel_ohne_andere_def.csv`,
-    canvHeight: 1420,
+    path: `${process.env.PUBLIC_URL}/data_unfaelle_bereinigt.csv`,
+    canvHeight: 1000,
     canvWidth: 1100,
-    margin: { top: 700, right: 15, bottom: 50, left: 50 },
-    height: 720 - 50 - 50,
+    margin: { top: 80, right: 15, bottom: 50, left: 60 },
+    height: 720 - 80 - 50,
     width: 1100 - 50 - 15,
   }
 
@@ -19,8 +19,8 @@ class Visualization2 extends Component {
     this.state = {
       objektart: "Personenwagen",
       unfallschwere: "Unfall mit leicht Verletzten",
-      strassenart: "Nebenstrasse",
-      unfalltyp: "Auffahrunfall",
+      strassenart: "Autobahn",
+      unfalltyp: "Fussgängerunfall",
       data: null,
     } 
     this.handleChange = this.handleChange.bind(this);
@@ -57,26 +57,6 @@ class Visualization2 extends Component {
       let filteredData_3 = filteredData.filter(row => row['Strassenart'] === strassenart1)
       let filteredData_4 = filteredData_3.filter(row => row['Unfallschwere'] === unfallschwere1)
       let filteredData_5 = filteredData_4.filter(row => row['Unfalltyp'] === 'Schleuder-, Selbstunfall')
-      //console.log("Show me some data, Unfallschwere: " + filteredData_4)
-      //console.log("Show me some data, nur noch 1 Zeile mit Unfalltyp: " + filteredData_5)
-      //console.log("Show me some data, 1 Feld: " + filteredData_5[0]['1992'])
-
-      // Das brauchen wir nicht, oder?
-      // const einfluss = d3.extent(data, d => d["Mangel oder Einfluss"])
-      // const objektart = d3.extent(data, d => d["Objektart"])
-      // const strassenart = d3.extent(data, d => d["Strassenart"])
-      // const unfallschwere = d3.extent(data, d => d["Unfallschwere"])
-      // const jahr1992 = d3.extent(data, d => d["1992"])
-
-      // create scale for x direction
-      const xScale = d3.scaleTime()
-        .domain([new Date("1992"), new Date("2016")])
-        .rangeRound([2, width])
-
-      // create scale for y direction
-      const yScale = d3.scaleLinear()
-        .domain([0, 50])
-        .rangeRound([height-5, 0])
 
       // select chart-area
       const g = d3.select("#chart-area")
@@ -87,13 +67,38 @@ class Visualization2 extends Component {
         .y((d, i) => { return yScale(d) })
         .curve(d3.curveCatmullRom)
 
+      // create scale for x direction
+      const xScale = d3.scaleTime()
+        .domain([new Date("1992"), new Date("2016")])
+        .rangeRound([2, width])
+
+      // create scale for y direction
+      let yScale
+      if (this.state.objektart === 'Personenwagen') {
+        yScale = d3.scaleLinear()
+        .domain([0, 3000])
+        .rangeRound([height-2, 0])
+      } else if (this.state.objektart === 'Fahrrad' || this.state.objektart === 'FussgängerIn' ) {
+        yScale = d3.scaleLinear()
+        .domain([0, 700])
+        .rangeRound([height-2, 0])
+      } else if (this.state.objektart === 'Sachentransportfahrzeuge' || this.state.objektart === 'Motorrad über 125 ccm' || this.state.objektart === 'Motorrad bis 125 ccm' || this.state.objektart === 'Motorfahrrad' ) {
+        yScale = d3.scaleLinear()
+        .domain([0, 400])
+        .rangeRound([height-2, 0])
+      } else {
+        yScale = d3.scaleLinear()
+        .domain([0, 150])
+        .rangeRound([height-2, 0])
+      }
+
       // create xAxis
       const xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%Y"))
       g.select("#axisX").call(xAxis)
 
       // create yAxis
       const yAxis = d3.axisLeft(yScale)
-      g.select("#axisY").call(yAxis) // evtl. umschreiben, so dass select nicht mehr verwendet wird
+      g.select("#axisY").call(yAxis)
 
       // Add label for yAxis
       g.append("text")
@@ -116,11 +121,11 @@ class Visualization2 extends Component {
         .style("text-anchor", "middle")
         .text("Jahre")
 
-
-      let selected = data.filter(row => row['Objektart'] === this.state.objektart)
-      
-      for (let i in selected) {
-        const theData = Object.values(selected[i]).slice(0, 2016 - 1992 + 1)
+      // Change used data depending on selected Objektart
+      d3.selectAll("path.lines").remove();
+      let selectedObjektart = data.filter(row => row['Objektart'] === this.state.objektart)
+      for (let i in selectedObjektart) {
+        let theData = Object.values(selectedObjektart[i]).slice(0, 2016 - 1992 + 1)
       
         // Add the circles
 /*         g.selectAll("circle")
@@ -132,26 +137,27 @@ class Visualization2 extends Component {
           .attr("cy", (d, i) => { return yScale(d) })
           .style("fill", "#F0F0F0") */
   
-        // Add the valueline path.
+        // Add valueline paths.
         g.append("path")
           .data([theData])
           .attr("class", "lines")
           .attr("stroke", "#F0F0F0")
-          .attr("stroke-width", "1.5px")
+          .attr("stroke-width", "1.0px")
           .attr("fill", "none")
           .attr("d", valueline)
-      }
+      };
 
- 
       // Add the path for the selected data.
+      d3.select("#selected").remove();
       let selectedData = data.filter(row => row['Objektart'] === this.state.objektart && row['Unfallschwere'] === this.state.unfallschwere && row['Strassenart'] === this.state.strassenart && row['Unfalltyp'] === this.state.unfalltyp)
       let theData2 = Object.values(selectedData[0]).slice(0, 2016 - 1992 + 1)
 
       g.append("path")
       .data([theData2])
       .attr("class", "lines")
-      .attr("stroke", "#000000")
-      .attr("stroke-width", "1.5px")
+      .attr("id", "selected")
+      .attr("stroke", "#4889BF")
+      .attr("stroke-width", "2.0px")
       .attr("fill", "none")
       .attr("d", valueline)
   }
@@ -173,12 +179,10 @@ class Visualization2 extends Component {
                 <option className="item" id="Sachentransportfahrzeuge">Sachentransportfahrzeuge</option>
                 <option className="item" id="Kleinmotorrad">Kleinmotorrad</option>
                 <option className="item" id="Motorrad bis 125 ccm">Motorrad bis 125 ccm</option>
-                <option className="item" id="Motorrad �ber 125 ccm">Motorrad �ber 125 ccm</option>
+                <option className="item" id="Motorrad über 125 ccm">Motorrad über 125 ccm</option>
                 <option className="item" id="Fahrrad">Fahrrad</option>
                 <option className="item" id="Motorfahrrad">Motorfahrrad</option>
-                <option className="item" id="FussgaengerIn">FussgaengerIn</option>
-                <option className="item" id="Anderes nicht motorisiertes Fahrzeug">Anderes nicht motorisiertes Fahrzeug</option>
-                <option className="item" id="Andere und unbekannte Fahrzeuge">Andere und unbekannte Fahrzeuge</option>
+                <option className="item" id="FussgängerIn">FussgängerIn</option>
               </select>
             </div>
             <div className="selection-group">
@@ -186,7 +190,7 @@ class Visualization2 extends Component {
               <select size="3" className="selection-items" id="Unfallschwere" name="unfallschwere" value={this.state.unfallschwere} onChange={this.handleChange} >
                 <option className="item" id="Unfall mit leicht Verletzten">Unfall mit leicht Verletzten</option>
                 <option className="item" id="Unfall mit schwer Verletzten">Unfall mit schwer Verletzten</option>
-                <option className="item" id="Unfall mit Getoeteten">Unfall mit Getoeteten</option>  
+                <option className="item" id="Unfall mit Getöteten">Unfall mit Getöteten</option>  
               </select>
             </div>
             <div className="selection-group">
@@ -196,25 +200,23 @@ class Visualization2 extends Component {
                 <option className="item" id="Autostrasse">Autostrasse</option>
                 <option className="item" id="Hauptstrasse">Hauptstrasse</option>
                 <option className="item" id="Nebenstrasse">Nebenstrasse</option>
-                <option className="item" id="Andere Strasse">Andere Strasse</option>
               </select>
             </div>
             <div className="selection-group">
               <h3 className="selection-group-title">Unfalltyp</h3>
               <select size="3" className="selection-items" id="Unfalltyp" name="unfalltyp" value={this.state.unfalltyp} onChange={this.handleChange} >
-                <option className="item" id="Fussgaengerunfall">Fussgaengerunfall</option>
+                <option className="item" id="Fussgängerunfall">Fussgängerunfall</option>
                 <option className="item" id="Schleuder-, Selbstunfall">Schleuder-, Selbstunfall</option>
-                <option className="item" id="Beim Kreuzen (in Laengsrichtung)">Beim Kreuzen (in Laengsrichtung)</option>
+                <option className="item" id="Beim Kreuzen (in Längsrichtung)">Beim Kreuzen (in Längsrichtung)</option>
                 <option className="item" id="Ueberholunfall">Ueberholunfall</option>
                 <option className="item" id="Auffahrunfall">Auffahrunfall</option>
                 <option className="item" id="Beim Vorbeifahren, Fahrstreifenwechsel">Beim Vorbeifahren, Fahrstreifenwechsel</option>
                 <option className="item" id="Beim Richtungswechsel (mit Abbiegen)">Beim Richtungswechsel (mit Abbiegen)</option>
                 <option className="item" id="Beim Queren (ohne Abbiegen)">Beim Queren (ohne Abbiegen)</option>
                 <option className="item" id="Tierunfall">Tierunfall</option>
-                <option className="item" id="Andere">Andere</option>
               </select>
             </div>
-            <input id="submit-btn" type="submit" value="Filtern" />
+            {/* <input id="submit-btn" type="submit" value="Filtern" /> */}
           </form>
         </div>
         <svg id={svgId} width={canvWidth} height={canvHeight} style={{ align: 'center' }}>
