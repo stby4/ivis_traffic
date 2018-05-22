@@ -13,7 +13,6 @@ class Visualization2 extends Component {
     width: 1100 - 50 - 15,
   }
 
-
   constructor(props) {
     super(props)
     this.state = {
@@ -121,6 +120,12 @@ class Visualization2 extends Component {
         .style("text-anchor", "middle")
         .text("Jahre")
 
+      // Define container for tooltip
+      var tooltip = d3.select("body").append("div")	
+        .attr("class", "tooltip")				
+	      .style("visibility", "hidden")
+	      //.text(this.state.objektart+", "+this.state.unfallschwere+", "+this.state.strassenart+", "+this.state.unfalltyp);
+
       // Change used data depending on selected Objektart
       d3.selectAll("path.lines").remove();
       let selectedObjektart = data.filter(row => row['Objektart'] === this.state.objektart)
@@ -145,6 +150,13 @@ class Visualization2 extends Component {
           .attr("stroke-width", "1.0px")
           .attr("fill", "none")
           .attr("d", valueline)
+          .on("mouseover", function(d) {	
+            tooltip.html(selectedObjektart[i]['Objektart'] +", "+ selectedObjektart[i]['Unfallschwere'] +", <br/>"  + selectedObjektart[i]['Strassenart'] +", "+ selectedObjektart[i]['Unfalltyp'])	
+                  .style("left", (d3.event.pageX) + "px")
+                  .style("top", (d3.event.pageY - 28) + "px")
+            return tooltip.style("visibility", "visible");})					
+          .on("mouseout", function(d) {		
+            return tooltip.style("visibility", "hidden");});
       };
 
       // Add the path for the selected data.
@@ -216,7 +228,7 @@ class Visualization2 extends Component {
                 <option className="item" id="Tierunfall">Tierunfall</option>
               </select>
             </div>
-            {/* <input id="submit-btn" type="submit" value="Filtern" /> */}
+            <input id="submit-btn" type="submit" value="Filtern" />
           </form>
         </div>
         <svg id={svgId} width={canvWidth} height={canvHeight} style={{ align: 'center' }}>
