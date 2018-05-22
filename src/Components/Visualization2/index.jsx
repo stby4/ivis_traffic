@@ -228,7 +228,7 @@ class Visualization2 extends Component {
                 <option className="item" id="Tierunfall">Tierunfall</option>
               </select>
             </div>
-            <input id="submit-btn" type="submit" value="Filtern" />
+            {/* <input id="submit-btn" type="submit" value="Filtern" /> */}
           </form>
         </div>
         <svg id={svgId} width={canvWidth} height={canvHeight} style={{ align: 'center' }}>
