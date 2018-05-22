@@ -87,10 +87,10 @@ class MapsVisualisation extends Component {
                 <form className="selection-area" onChange={this.handleChange}>
                     <div className="selection-group">
                     <h3 className="selection-group-title">Daten auswählen</h3>
-                        <select size="2" className="selection-items" name="map-selection">
+                        <select className="selection-items" name="map-selection">
                             <option className="item" value="relative" selected>Unfälle pro 1000 Fahrzeuge</option>
                             <option className="item" value="absolute">Unfälle insgesamt</option>
-                            <option  className="item" value="amount">Zugelassene Fahrzeuge</option>
+                            <option className="item" value="amount">Zugelassene Fahrzeuge</option>
                         </select>
                     </div>
                 </form>

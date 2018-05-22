@@ -21,7 +21,7 @@ class ColorLegend extends PureComponent {
                 <span className="mapLegendMin">{invert ? max : min}</span>
                 <svg width={width} height={height} >
                 {
-                    cols.map(col => <path d={`M${col} 0 V ${height}`} stroke={`${color(invert ? 1 - col*colorStep : col*colorStep)}`} stroke-width="1"/>)
+                    cols.map(col => <path d={`M${col} 0 V ${height}`} stroke={`${color(invert ? 1 - col*colorStep : col*colorStep)}`} stroke-width="2"/>)
                 }
                 </svg>
                 <span className="mapLegendMax">{invert ? min : max}</span>
