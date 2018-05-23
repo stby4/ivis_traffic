@@ -6,17 +6,19 @@
 }
 
 header {
-  width: 1125px;
-  display: inline-block;
+  padding: 1.6em;
 }
 
 h1 {
-  font-family: 'Kavivanar', cursive;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.4em;
+  margin: 0;
 }
 
 h2 {
-  font-family: 'Kavivanar', cursive;
-  margin-bottom: 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8em;
+  margin: 0 0 20px 0;
 }
 
 .inner {
@@ -26,7 +28,6 @@ h2 {
 
 .container {
   margin: 0 0 70px 0;
-  padding: 10px 0;
   width: 100%;
   box-sizing: border-box;
 }

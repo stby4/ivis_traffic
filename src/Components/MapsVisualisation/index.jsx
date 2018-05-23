@@ -109,7 +109,7 @@ class MapsVisualisation extends Component {
                             color={colors[selectedDataset]}
                             scale={scales[selectedDataset]}
                             width="182"
-                            height="121" />
+                            height="110" />
                     </div>)}
                 </div>}
             </div>
