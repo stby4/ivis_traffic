@@ -6,10 +6,10 @@ class Visualization2 extends Component {
   static defaultProps = {
     svgId: 'canvas',
     path: `${process.env.PUBLIC_URL}/data_unfaelle_bereinigt.csv`,
-    canvHeight: 1000,
-    canvWidth: 1100,
-    margin: { top: 80, right: 15, bottom: 50, left: 60 },
-    height: 720 - 80 - 50,
+    canvHeight: 710,
+    canvWidth: 1110,
+    margin: { top: 70, right: 15, bottom: 0, left: 60 },
+    height: 650 - 70 - 0,
     width: 1100 - 50 - 15,
   }
 
@@ -18,7 +18,7 @@ class Visualization2 extends Component {
     this.state = {
       objektart: "Personenwagen",
       unfallschwere: "Unfall mit leicht Verletzten",
-      strassenart: "Autobahn",
+      strassenart: "Hauptstrasse",
       unfalltyp: "Fussgängerunfall",
       data: null,
     } 
@@ -145,7 +145,7 @@ class Visualization2 extends Component {
         g.append("path")
           .data([theData])
           .attr("class", "lines")
-          .attr("stroke", "#F0F0F0")
+          .attr("stroke", "#E1E1E1")
           .attr("stroke-width", "1.0px")
           .attr("fill", "none")
           .attr("d", valueline)
@@ -236,6 +236,15 @@ class Visualization2 extends Component {
             <g id="axisY" className="axis" />
           </g>
         </svg>
+        <div className="description">
+          <p>
+            Hier können die Unfälle nach Unfallverursacher, Unfallschwere, Strassenart und Unfalltyp gefiltert werden. 
+            Je nach ausgewähltem Unfallverursacher passt sich die Skala an, da sich die Anzahl Unfälle für die verschiedenen Unfallverursacher stark unterscheiden.
+            Die ausgegrauten Linien repräsentieren alle Kombiniationsmöglichkeiten pro Unfallverursacher. 
+            Die blaue Linie repräsentiert die Auswahl, welcher der Benutzer mittels der Filter getroffen hat.
+            Beim hovern über die Linien erscheint ein Tooltip mit den Daten zur jeweiligen Linie.
+          </p>
+        </div>
       </div>
     )
   }

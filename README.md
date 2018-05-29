@@ -1,5 +1,6 @@
 # Interactive Information Visualization Project (iVisPro)
 zum Thema Strassenverkehrsunfälle in der Schweiz
+
 von Sandra Amport und Hinrich Kaestner
 
 ## Software deployement
