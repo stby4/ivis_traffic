@@ -8,8 +8,7 @@
 
 .tooltip {	
   text-align: center;							
-  pointer-events: none;	
-  transition: 1.0s all ease-out;
+  pointer-events: none;
 }
 
 #submit-btn {
