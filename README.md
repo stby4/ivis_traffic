@@ -1,9 +1,10 @@
 
 ## Interactive Information Visualization Project (iVisPro)
-Sandra Amport und Hinrich Kaestner
+zum Thema Strassenverkehrsunfälle in der Schweiz
+von Sandra Amport und Hinrich Kaestner
 
 ### Software deployement
-Unsere Visualisierungen sind unter folgendem Link zu finden
+Unsere Visualisierung ist unter folgendem Link zu finden
 
 https://stby4.github.io/ivis_traffic/
 
