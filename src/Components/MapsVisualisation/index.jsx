@@ -3,7 +3,7 @@ import * as d3 from 'd3'
 import './style.css'
 
 import Map from '../../Components/Map'
-import MapsDescription from '../../MapsDescription'
+import MapsDescription from '../../Components/MapsDescription'
 import ColorLegend from '../../Components/ColorLegend'
 
 class MapsVisualisation extends Component {
