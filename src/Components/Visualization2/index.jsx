@@ -124,7 +124,6 @@ class Visualization2 extends Component {
       var tooltip = d3.select("body").append("div")	
         .attr("class", "tooltip")				
 	      .style("visibility", "hidden")
-	      //.text(this.state.objektart+", "+this.state.unfallschwere+", "+this.state.strassenart+", "+this.state.unfalltyp);
 
       // Change used data depending on selected Objektart
       d3.selectAll("path.lines").remove();
