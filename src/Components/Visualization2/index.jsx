@@ -153,7 +153,7 @@ class Visualization2 extends Component {
           .on("mouseover", function(d) {	
             tooltip.html(selectedObjektart[i]['Objektart'] +", "+ selectedObjektart[i]['Unfallschwere'] +", <br/>"  + selectedObjektart[i]['Strassenart'] +", "+ selectedObjektart[i]['Unfalltyp'])	
                   .style("left", (d3.event.pageX - 2) + "px")
-                  .style("top", (d3.event.pageY - 35) + "px")
+                  .style("top", (d3.event.pageY - 50) + "px")
             return tooltip.style("visibility", "visible");})					
           .on("mouseout", function(d) {		
             return tooltip.style("visibility", "hidden");});
@@ -179,7 +179,7 @@ class Visualization2 extends Component {
     return (
       <div className="container" id="visualization2">
         
-        <h2>Grafik 2</h2>
+        <h2>Art der Unfälle</h2>
         
         <div className="selection-area">
           <form onSubmit={this.handleSubmit}>

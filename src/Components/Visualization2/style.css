@@ -5,16 +5,10 @@
   }
 
 
-/* .tooltip {	
-  position: absolute;			
+.tooltip {	
   text-align: center;							
-  padding: 4px;				
-  font: 12px sans-serif;		
-  background: rgb(224, 235, 250);	
-  border: 0px;		
-  border-radius: 1px;			
   pointer-events: none;			
-} */
+}
 
 #submit-btn {
   margin: 10px 10px;
