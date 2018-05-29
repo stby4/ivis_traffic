@@ -13,3 +13,25 @@
     position: relative;
     border-bottom: 1px solid lightgray;
 }
+
+.maps {
+    position: relative;
+}
+
+.mapLoading {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.815);
+    z-index: 1;
+}
+
+.mapLoading > div {
+    display: inline-block;
+    font-size: 2em;
+    margin: auto;
+}

@@ -36,6 +36,7 @@ class MapsVisualisation extends Component {
             country: null,
             data: null,
             selectedDataset: 'relative',
+            loading: false,
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -51,10 +52,10 @@ class MapsVisualisation extends Component {
     }
 
     loadDataset(selectedDataset) {
-        this.setState({ data: null })
+        this.setState({ data: null, loading: true, })
         d3.csv(this.props.paths[selectedDataset])
             .then(data => {
-                this.setState({ selectedDataset: selectedDataset, data: data })
+                this.setState({ selectedDataset: selectedDataset, data: data, loading: false, })
             })
     }
 
@@ -62,13 +63,9 @@ class MapsVisualisation extends Component {
         this.loadDataset(event.target.value)
     }
 
-    shouldComponentUpdate() {
-        return true
-    }
-
     render() {
         const { id, className, scales, colors, domains } = this.props
-        const { country, data, selectedDataset } = this.state
+        const { country, data, selectedDataset, loading } = this.state
         let cantonMap = {}
 
         if (null != data) {
@@ -86,7 +83,7 @@ class MapsVisualisation extends Component {
 
                 <form className="selection-area" onChange={this.handleChange}>
                     <div className="selection-group">
-                    <h3 className="selection-group-title">Daten auswählen</h3>
+                        <h3 className="selection-group-title">Daten auswählen</h3>
                         <select className="selection-items" name="map-selection" defaultValue="relative">
                             <option className="item" value="relative">Unfälle pro 1000 Fahrzeuge</option>
                             <option className="item" value="absolute">Unfälle insgesamt</option>
@@ -95,23 +92,26 @@ class MapsVisualisation extends Component {
                     </div>
                 </form>
 
-                <ColorLegend color={colors[selectedDataset]} domain={domains[selectedDataset]} width={200} height={16}/>
+                <ColorLegend color={colors[selectedDataset]} domain={domains[selectedDataset]} width={200} height={16} />
 
-                {null != country && <div className="mapsContainer">
-                    {years.map(year => <div className="map" key={`map_${year}`}>
-                        <div className="mapTitle">{year}</div>
-                        <Map
-                            id={`map${year}`}
-                            country={country}
-                            year={year}
-                            data={data}
-                            cantonMap={cantonMap}
-                            color={colors[selectedDataset]}
-                            scale={scales[selectedDataset]}
-                            width="182"
-                            height="110" />
-                    </div>)}
-                </div>}
+                <div className="maps">
+                    {loading && <div className="mapLoading"><div>Visualisierung wird geladen</div></div>}
+                    {null != country && <div className="mapsContainer">
+                        {years.map(year => <div className="map" key={`map_${year}`}>
+                            <div className="mapTitle">{year}</div>
+                            <Map
+                                id={`map${year}`}
+                                country={country}
+                                year={year}
+                                data={data}
+                                cantonMap={cantonMap}
+                                color={colors[selectedDataset]}
+                                scale={scales[selectedDataset]}
+                                width="182"
+                                height="110" />
+                        </div>)}
+                    </div>}
+                </div>
             </div>
         )
     }

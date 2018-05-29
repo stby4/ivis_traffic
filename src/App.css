@@ -76,11 +76,25 @@ h2 {
 .tooltip {
   font-size: 0.8em;
   position: absolute;
-  visibility: hidden;
+  opacity: 1;
   padding: 4px 2px;
   background-color: #fff;
   border: 1px solid black;
   z-index: 1;
+
+}
+
+.tooltip.invisible {
+  opacity: 0;
+  animation-name: fadeout;
+  animation-duration: 2000ms;
+  animation-iteration-count: 1;
+}
+
+@keyframes fadeout {
+  0% {opacity: 1;}
+  80% {opacity: 0.6}
+  100% {opacity: 0;}
 }
 
 .tooltip::before {

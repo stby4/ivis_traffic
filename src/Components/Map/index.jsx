@@ -15,11 +15,11 @@ class Map extends Component {
         tooltip.html(data)
             .style('left', `${d3.event.pageX - 2}px`)
             .style('top', `${d3.event.pageY - 35}px`)
-            .style('visibility', 'visible')
+            .attr('class', 'tooltip')
     }
 
     hideTooltip() {
-        d3.select('#mapTooltip').style('visibility', 'hidden')
+        d3.select('#mapTooltip').attr('class', 'tooltip invisible')
     }
 
     render() {

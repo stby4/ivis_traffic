@@ -121,9 +121,8 @@ class Visualization2 extends Component {
         .text("Jahre")
 
       // Define container for tooltip
-      var tooltip = d3.select("body").append("div")	
-        .attr("class", "tooltip")				
-	      .style("visibility", "hidden")
+      const tooltip = d3.select("body").append("div")	
+        .attr("class", "tooltip invisible")
 	      //.text(this.state.objektart+", "+this.state.unfallschwere+", "+this.state.strassenart+", "+this.state.unfalltyp);
 
       // Change used data depending on selected Objektart
@@ -154,9 +153,9 @@ class Visualization2 extends Component {
             tooltip.html(selectedObjektart[i]['Objektart'] +", "+ selectedObjektart[i]['Unfallschwere'] +", <br/>"  + selectedObjektart[i]['Strassenart'] +", "+ selectedObjektart[i]['Unfalltyp'])	
                   .style("left", (d3.event.pageX - 2) + "px")
                   .style("top", (d3.event.pageY - 50) + "px")
-            return tooltip.style("visibility", "visible");})					
+            return tooltip.attr("class", "tooltip");})					
           .on("mouseout", function(d) {		
-            return tooltip.style("visibility", "hidden");});
+            return tooltip.attr("class", "tooltip invisible");});
       };
 
       // Add the path for the selected data.
