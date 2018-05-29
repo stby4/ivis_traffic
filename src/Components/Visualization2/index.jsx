@@ -8,8 +8,8 @@ class Visualization2 extends Component {
     path: `${process.env.PUBLIC_URL}/data_unfaelle_bereinigt.csv`,
     canvHeight: 710,
     canvWidth: 1110,
-    margin: { top: 60, right: 15, bottom: 0, left: 60 },
-    height: 650 - 60 - 0,
+    margin: { top: 70, right: 15, bottom: 0, left: 60 },
+    height: 650 - 70 - 0,
     width: 1100 - 50 - 15,
   }
 
