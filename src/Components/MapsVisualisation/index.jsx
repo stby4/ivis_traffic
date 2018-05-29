@@ -3,6 +3,7 @@ import * as d3 from 'd3'
 import './style.css'
 
 import Map from '../../Components/Map'
+import MapsDescription from '../../MapsDescription'
 import ColorLegend from '../../Components/ColorLegend'
 
 class MapsVisualisation extends Component {
@@ -92,8 +93,6 @@ class MapsVisualisation extends Component {
                     </div>
                 </form>
 
-                <ColorLegend color={colors[selectedDataset]} domain={domains[selectedDataset]} width={200} height={16} />
-
                 <div className="maps">
                     {loading && <div className="mapLoading"><div>Visualisierung wird geladen</div></div>}
                     {null != country && <div className="mapsContainer">
@@ -112,6 +111,10 @@ class MapsVisualisation extends Component {
                         </div>)}
                     </div>}
                 </div>
+
+                <ColorLegend color={colors[selectedDataset]} domain={domains[selectedDataset]} width={200} height={16} />
+
+                <MapsDescription/>
             </div>
         )
     }
