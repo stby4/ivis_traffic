@@ -236,7 +236,7 @@ class Visualization2 extends Component {
             <g id="axisY" className="axis" />
           </g>
         </svg>
-        <div class="description">
+        <div className="description">
           <p>
             Hier können die Unfälle nach Unfallverursacher, Unfallschwere, Strassenart und Unfalltyp gefiltert werden. 
             Je nach ausgewähltem Unfallverursacher passt sich die Skala an, da sich die Anzahl Unfälle für die verschiedenen Unfallverursacher stark unterscheiden.
