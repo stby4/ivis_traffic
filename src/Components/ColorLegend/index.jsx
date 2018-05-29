@@ -18,13 +18,13 @@ class ColorLegend extends PureComponent {
 
         return (
             <div className="mapLegend">
-                <span className="mapLegendMin">{invert ? max : min}</span>
+                <span className="mapLegendMin">{Number(invert ? max : min).toLocaleString()}</span>
                 <svg width={width} height={height} >
                     {
                         cols.map(col => <path key={`path${col}`} d={`M${col} 0 V ${height}`} stroke={`${color(invert ? 1 - col * colorStep : col * colorStep)}`} strokeWidth="2" />)
                     }
                 </svg>
-                <span className="mapLegendMax">{invert ? min : max}</span>
+                <span className="mapLegendMax">{Number(invert ? min : max).toLocaleString()}</span>
             </div>
         )
     }

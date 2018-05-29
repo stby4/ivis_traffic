@@ -15,14 +15,14 @@ class MapsVisualisation extends Component {
             amount: `${process.env.PUBLIC_URL}/amount-canton-absolute.csv`,
         },
         domains: {
-            relative: [14, 0],
+            relative: [12, 0],
             absolute: [0, 4000],
-            amount: [0, 800000],
+            amount: [0, 1000000],
         },
         scales: {
-            relative: d3.scaleLinear().domain([14, 0]).range([0, 1]),
+            relative: d3.scaleLinear().domain([12, 0]).range([0, 1]),
             absolute: d3.scaleLinear().domain([0, 4000]).range([0, 1]),
-            amount: d3.scaleLinear().domain([0, 800000]).range([0, 1]),
+            amount: d3.scaleLinear().domain([0, 1000000]).range([0, 1]),
         },
         colors: {
             relative: d3.interpolateRdYlBu,
