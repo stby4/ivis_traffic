@@ -6,10 +6,10 @@ class Visualization2 extends Component {
   static defaultProps = {
     svgId: 'canvas',
     path: `${process.env.PUBLIC_URL}/data_unfaelle_bereinigt.csv`,
-    canvHeight: 770,
+    canvHeight: 710,
     canvWidth: 1110,
-    margin: { top: 60, right: 15, bottom: 50, left: 60 },
-    height: 620 - 60 - 50,
+    margin: { top: 60, right: 15, bottom: 0, left: 60 },
+    height: 650 - 60 - 0,
     width: 1100 - 50 - 15,
   }
 
@@ -236,6 +236,15 @@ class Visualization2 extends Component {
             <g id="axisY" className="axis" />
           </g>
         </svg>
+        <div class="description">
+          <p>
+            Hier können die Unfälle nach Unfallverursacher, Unfallschwere, Strassenart und Unfalltyp gefiltert werden. 
+            Je nach ausgewähltem Unfallverursacher passt sich die Skala an, da sich die Anzahl Unfälle für die verschiedenen Unfallverursacher stark unterscheiden.
+            Die ausgegrauten Linien repräsentieren alle Kombiniationsmöglichkeiten pro Unfallverursacher. 
+            Die blaue Linie repräsentiert die Auswahl, welcher der Benutzer mittels der Filter getroffen hat.
+            Beim hovern über die Linien erscheint ein Tooltip mit den Daten zur jeweiligen Linie.
+          </p>
+        </div>
       </div>
     )
   }

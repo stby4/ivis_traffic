@@ -108,3 +108,9 @@ h2 {
   border-bottom: 6px solid transparent;
   border-left: 6px solid black;
 }
+
+.description {
+  text-align: left;
+  font-size: 14px;
+  width: 80%;
+}
