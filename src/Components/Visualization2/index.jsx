@@ -6,10 +6,10 @@ class Visualization2 extends Component {
   static defaultProps = {
     svgId: 'canvas',
     path: `${process.env.PUBLIC_URL}/data_unfaelle_bereinigt.csv`,
-    canvHeight: 1000,
-    canvWidth: 1100,
-    margin: { top: 80, right: 15, bottom: 50, left: 60 },
-    height: 720 - 80 - 50,
+    canvHeight: 770,
+    canvWidth: 1110,
+    margin: { top: 60, right: 15, bottom: 50, left: 60 },
+    height: 620 - 60 - 50,
     width: 1100 - 50 - 15,
   }
 
@@ -18,7 +18,7 @@ class Visualization2 extends Component {
     this.state = {
       objektart: "Personenwagen",
       unfallschwere: "Unfall mit leicht Verletzten",
-      strassenart: "Autobahn",
+      strassenart: "Hauptstrasse",
       unfalltyp: "Fussgängerunfall",
       data: null,
     } 
@@ -145,7 +145,7 @@ class Visualization2 extends Component {
         g.append("path")
           .data([theData])
           .attr("class", "lines")
-          .attr("stroke", "#F0F0F0")
+          .attr("stroke", "#E1E1E1")
           .attr("stroke-width", "1.0px")
           .attr("fill", "none")
           .attr("d", valueline)
