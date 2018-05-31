@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot ColorLegend 1`] = `
+<div
+  className="mapLegend"
+>
+  <span
+    className="mapLegendMin"
+  >
+    0
+  </span>
+  <svg
+    height="100"
+    width="500"
+  >
+    <path
+      d="M0 0 V 100"
+      stroke="undefined"
+      strokeWidth="2"
+    />
+  </svg>
+  <span
+    className="mapLegendMax"
+  >
+    2,000
+  </span>
+</div>
+`;
