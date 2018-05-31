@@ -2,15 +2,19 @@
   "name": "ivis-traffic",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://stby4.github.io/ivis_traffic",
   "dependencies": {
     "d3": "^5.4.0",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "gh-pages": "^1.1.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
     "react-faux-dom": "^4.1.0",
     "react-scripts": "1.1.4",
     "topojson": "^3.0.2"
   },
   "scripts": {
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
