@@ -27,11 +27,10 @@ h2 {
 }
 
 .container {
-  margin: 0 0 70px 0;
+  margin: 0 0 90px 0;
   width: 100%;
   box-sizing: border-box;
 }
-
 
 .selection-area {
   margin: 10px auto 20px auto;
@@ -81,7 +80,6 @@ h2 {
   background-color: #fff;
   border: 1px solid black;
   z-index: 1;
-
 }
 
 .tooltip.invisible {

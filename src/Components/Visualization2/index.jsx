@@ -6,10 +6,10 @@ class Visualization2 extends Component {
   static defaultProps = {
     svgId: 'canvas',
     path: `${process.env.PUBLIC_URL}/data_unfaelle_bereinigt.csv`,
-    canvHeight: 710,
+    canvHeight: 690,
     canvWidth: 1110,
     margin: { top: 70, right: 15, bottom: 0, left: 60 },
-    height: 650 - 70 - 0,
+    height: 620 - 70 - 0,
     width: 1100 - 50 - 15,
   }
 
@@ -23,7 +23,6 @@ class Visualization2 extends Component {
       data: null,
     } 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -32,10 +31,6 @@ class Visualization2 extends Component {
     this.setState({
       [name] : value
     });
-  }
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.objektart + "   " + this.state.unfallschwere);
-    event.preventDefault();
   }
 
   componentDidMount() {
@@ -50,12 +45,6 @@ class Visualization2 extends Component {
     const { data } = this.state
 
     if (null !== data) {
-
-      // TRY OUT HERE
-      // let filteredData = data.filter(row => row['Objektart'] === objektart1)
-      // let filteredData_3 = filteredData.filter(row => row['Strassenart'] === strassenart1)
-      // let filteredData_4 = filteredData_3.filter(row => row['Unfallschwere'] === unfallschwere1)
-      // let filteredData_5 = filteredData_4.filter(row => row['Unfalltyp'] === 'Schleuder-, Selbstunfall')
 
       // select chart-area
       const g = d3.select("#chart-area")
@@ -123,23 +112,12 @@ class Visualization2 extends Component {
       // Define container for tooltip
       const tooltip = d3.select("body").append("div")	
         .attr("class", "tooltip invisible")
-	      //.text(this.state.objektart+", "+this.state.unfallschwere+", "+this.state.strassenart+", "+this.state.unfalltyp);
 
       // Change used data depending on selected Objektart
       d3.selectAll("path.lines").remove();
       let selectedObjektart = data.filter(row => row['Objektart'] === this.state.objektart)
       for (let i in selectedObjektart) {
         let theData = Object.values(selectedObjektart[i]).slice(0, 2016 - 1992 + 1)
-      
-        // Add the circles
-/*         g.selectAll("circle")
-          .data(theData)
-          .enter()
-          .append("circle")
-          .attr("r", 4)
-          .attr("cx", (d, i) => { return xScale(new Date('' + (1992 + i))) })
-          .attr("cy", (d, i) => { return yScale(d) })
-          .style("fill", "#F0F0F0") */
   
         // Add valueline paths.
         g.append("path")
@@ -171,6 +149,13 @@ class Visualization2 extends Component {
       .attr("stroke-width", "2.0px")
       .attr("fill", "none")
       .attr("d", valueline)
+      .on("mouseover", function(d) {	
+        tooltip.html(selectedObjektart[0]['Objektart'] +", "+ selectedObjektart[0]['Unfallschwere'] +", <br/>"  + selectedObjektart[0]['Strassenart'] +", "+ selectedObjektart[0]['Unfalltyp'])	
+              .style("left", (d3.event.pageX - 2) + "px")
+              .style("top", (d3.event.pageY - 50) + "px")
+        return tooltip.attr("class", "tooltip");})					
+      .on("mouseout", function(d) {		
+        return tooltip.attr("class", "tooltip invisible");});
   }
 
 
@@ -183,7 +168,7 @@ class Visualization2 extends Component {
         <div className="selection-area">
           <form onSubmit={this.handleSubmit}>
             <div className="selection-group">
-              <h3 className="selection-group-title">Objektart</h3>
+              <h3 className="selection-group-title">Unfallverursacher</h3>
               <select size="3" className="selection-items" id="Objektart" name="objektart" value={this.state.objektart} onChange={this.handleChange} >
                 <option className="item" id="Personenwagen">Personenwagen</option>
                 <option className="item" id="Personentransportfahrzeuge">Personentransportfahrzeuge</option>
@@ -227,7 +212,6 @@ class Visualization2 extends Component {
                 <option className="item" id="Tierunfall">Tierunfall</option>
               </select>
             </div>
-            {/* <input id="submit-btn" type="submit" value="Filtern" /> */}
           </form>
         </div>
         <svg id={svgId} width={canvWidth} height={canvHeight} style={{ align: 'center' }}>
