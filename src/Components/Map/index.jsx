@@ -55,7 +55,7 @@ class Map extends Component {
                     return color(scale(val))
                 })
                 .on('mouseover', d => {
-                    this.showTooltip(`${d.properties.name}: ${Math.round(data[cantonMap[d.id]][year] * 10) / 10}`)
+                    this.showTooltip(`${d.properties.name}: ${Number(Math.round(data[cantonMap[d.id]][year] * 10) / 10).toLocaleString()}`)
                 })
                 .on('mouseleave', () => {
                     this.hideTooltip()

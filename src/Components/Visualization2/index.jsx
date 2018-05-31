@@ -21,7 +21,7 @@ class Visualization2 extends Component {
       strassenart: "Hauptstrasse",
       unfalltyp: "Fussgängerunfall",
       data: null,
-    } 
+    }
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -29,7 +29,7 @@ class Visualization2 extends Component {
     const name = event.target.name;
     const value = event.target.value;
     this.setState({
-      [name] : value
+      [name]: value
     });
   }
 
@@ -64,20 +64,20 @@ class Visualization2 extends Component {
       let yScale
       if (this.state.objektart === 'Personenwagen') {
         yScale = d3.scaleLinear()
-        .domain([0, 3000])
-        .rangeRound([height-2, 0])
-      } else if (this.state.objektart === 'Fahrrad' || this.state.objektart === 'FussgängerIn' ) {
+          .domain([0, 3000])
+          .rangeRound([height - 2, 0])
+      } else if (this.state.objektart === 'Fahrrad' || this.state.objektart === 'FussgängerIn') {
         yScale = d3.scaleLinear()
-        .domain([0, 700])
-        .rangeRound([height-2, 0])
-      } else if (this.state.objektart === 'Sachentransportfahrzeuge' || this.state.objektart === 'Motorrad über 125 ccm' || this.state.objektart === 'Motorrad bis 125 ccm' || this.state.objektart === 'Motorfahrrad' ) {
+          .domain([0, 700])
+          .rangeRound([height - 2, 0])
+      } else if (this.state.objektart === 'Sachentransportfahrzeuge' || this.state.objektart === 'Motorrad über 125 ccm' || this.state.objektart === 'Motorrad bis 125 ccm' || this.state.objektart === 'Motorfahrrad') {
         yScale = d3.scaleLinear()
-        .domain([0, 400])
-        .rangeRound([height-2, 0])
+          .domain([0, 400])
+          .rangeRound([height - 2, 0])
       } else {
         yScale = d3.scaleLinear()
-        .domain([0, 150])
-        .rangeRound([height-2, 0])
+          .domain([0, 150])
+          .rangeRound([height - 2, 0])
       }
 
       // create xAxis
@@ -110,7 +110,7 @@ class Visualization2 extends Component {
         .text("Jahre")
 
       // Define container for tooltip
-      const tooltip = d3.select("body").append("div")	
+      const tooltip = d3.select("body").append("div")
         .attr("class", "tooltip invisible")
 
       // Change used data depending on selected Objektart
@@ -127,13 +127,15 @@ class Visualization2 extends Component {
           .attr("stroke-width", "1.0px")
           .attr("fill", "none")
           .attr("d", valueline)
-          .on("mouseover", function(d) {	
-            tooltip.html(selectedObjektart[i]['Objektart'] +", "+ selectedObjektart[i]['Unfallschwere'] +", <br/>"  + selectedObjektart[i]['Strassenart'] +", "+ selectedObjektart[i]['Unfalltyp'])	
-                  .style("left", (d3.event.pageX - 2) + "px")
-                  .style("top", (d3.event.pageY - 50) + "px")
-            return tooltip.attr("class", "tooltip");})					
-          .on("mouseout", function(d) {		
-            return tooltip.attr("class", "tooltip invisible");});
+          .on("mouseover", function (d) {
+            tooltip.html(selectedObjektart[i]['Objektart'] + ", " + selectedObjektart[i]['Unfallschwere'] + ", <br/>" + selectedObjektart[i]['Strassenart'] + ", " + selectedObjektart[i]['Unfalltyp'])
+              .style("left", (d3.event.pageX - 2) + "px")
+              .style("top", (d3.event.pageY - 50) + "px")
+            return tooltip.attr("class", "tooltip");
+          })
+          .on("mouseout", function (d) {
+            return tooltip.attr("class", "tooltip invisible");
+          });
       };
 
       // Add the path for the selected data.
@@ -162,9 +164,9 @@ class Visualization2 extends Component {
 
     return (
       <div className="container" id="visualization2">
-        
+
         <h2>Art der Unfälle</h2>
-        
+
         <div className="selection-area">
           <form onSubmit={this.handleSubmit}>
             <div className="selection-group">
@@ -186,7 +188,7 @@ class Visualization2 extends Component {
               <select size="3" className="selection-items" id="Unfallschwere" name="unfallschwere" value={this.state.unfallschwere} onChange={this.handleChange} >
                 <option className="item" id="Unfall mit leicht Verletzten">Unfall mit leicht Verletzten</option>
                 <option className="item" id="Unfall mit schwer Verletzten">Unfall mit schwer Verletzten</option>
-                <option className="item" id="Unfall mit Getöteten">Unfall mit Getöteten</option>  
+                <option className="item" id="Unfall mit Getöteten">Unfall mit Getöteten</option>
               </select>
             </div>
             <div className="selection-group">
@@ -222,12 +224,16 @@ class Visualization2 extends Component {
         </svg>
         <div className="description">
           <p>
-            Hier können die Unfälle nach Unfallverursacher, Unfallschwere, Strassenart und Unfalltyp gefiltert werden. 
+            Hier können die Unfälle nach Unfallverursacher, Unfallschwere, Strassenart und Unfalltyp gefiltert werden.
             Je nach ausgewähltem Unfallverursacher passt sich die Skala an, da sich die Anzahl Unfälle für die verschiedenen Unfallverursacher stark unterscheiden.
-            Die ausgegrauten Linien repräsentieren alle Kombiniationsmöglichkeiten pro Unfallverursacher. 
+            Die ausgegrauten Linien repräsentieren alle Kombiniationsmöglichkeiten pro Unfallverursacher.
             Die blaue Linie repräsentiert die Auswahl, welcher der Benutzer mittels der Filter getroffen hat.
             Beim hovern über die Linien erscheint ein Tooltip mit den Daten zur jeweiligen Linie.
           </p>
+          <h4>Quelle</h4>
+          <ul className="sources">
+            <li><a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/kataloge-datenbanken/daten.assetdetail.5267255.html" target="_blank" rel="noopener noreferrer">Strassenverkehrsunfälle: Mutmassliche Mängel und Einflüsse nach Mangel oder Einfluss, Unfallschwere, Unfalltyp, Strassenart und Objektart</a>, Bundesamt für Statistik, abgerufen am 22. Mai 2018</li>
+          </ul>
         </div>
       </div>
     )
