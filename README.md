@@ -18,8 +18,4 @@ __Visualisierung "Art der Unfälle"__
 - https://www.pxweb.bfs.admin.ch/pxweb/de/px-x-1106010100_106/px-x-1106010100_106/px-x-1106010100_106.px
 
 ## Wie wir unser Ziel erreicht haben
-blabla
-
-
-
-
+Um die absoluten Zahlen etwas besser einordnen zu können, haben wir eine zweite Visualisierung erstellt und der oben genannten Visualisierung vorangestellt, die die Unfallzahlen pro Kanton und 1000 zugelassen Fahrzeugen darstellt. Der Verlauf von 1992 bis 2016 zeigt schnell und eindrücklich, in wie viel weniger Unfälle ein Fahrzeug heute verwickelt ist, als noch vor 26 Jahren. In den absoluten Zahlen (Unfälle insgesamt und zugelassene Fahrzeuge) erkennt man auch den Grund dafür: Während selbst die absoluten Unfallzahlen zurück gegangen sind, ist die Anzahl an Fahrzeugen gestiegen.
