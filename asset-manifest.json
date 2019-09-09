@@ -1,6 +1,15 @@
 {
-  "main.css": "static/css/main.d3df2465.css",
-  "main.css.map": "static/css/main.d3df2465.css.map",
-  "main.js": "static/js/main.89739102.js",
-  "main.js.map": "static/js/main.89739102.js.map"
+  "files": {
+    "main.css": "/ivis_traffic/static/css/main.91e2d559.chunk.css",
+    "main.js": "/ivis_traffic/static/js/main.e2355a20.chunk.js",
+    "main.js.map": "/ivis_traffic/static/js/main.e2355a20.chunk.js.map",
+    "runtime~main.js": "/ivis_traffic/static/js/runtime~main.9c258fcc.js",
+    "runtime~main.js.map": "/ivis_traffic/static/js/runtime~main.9c258fcc.js.map",
+    "static/js/2.cdbb55ba.chunk.js": "/ivis_traffic/static/js/2.cdbb55ba.chunk.js",
+    "static/js/2.cdbb55ba.chunk.js.map": "/ivis_traffic/static/js/2.cdbb55ba.chunk.js.map",
+    "index.html": "/ivis_traffic/index.html",
+    "precache-manifest.ecbb441ca42be29c0ca060e9a1b37d59.js": "/ivis_traffic/precache-manifest.ecbb441ca42be29c0ca060e9a1b37d59.js",
+    "service-worker.js": "/ivis_traffic/service-worker.js",
+    "static/css/main.91e2d559.chunk.css.map": "/ivis_traffic/static/css/main.91e2d559.chunk.css.map"
+  }
 }
