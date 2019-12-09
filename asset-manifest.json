@@ -1,15 +1,22 @@
 {
   "files": {
     "main.css": "/ivis_traffic/static/css/main.91e2d559.chunk.css",
-    "main.js": "/ivis_traffic/static/js/main.e2355a20.chunk.js",
-    "main.js.map": "/ivis_traffic/static/js/main.e2355a20.chunk.js.map",
-    "runtime~main.js": "/ivis_traffic/static/js/runtime~main.9c258fcc.js",
-    "runtime~main.js.map": "/ivis_traffic/static/js/runtime~main.9c258fcc.js.map",
-    "static/js/2.cdbb55ba.chunk.js": "/ivis_traffic/static/js/2.cdbb55ba.chunk.js",
-    "static/js/2.cdbb55ba.chunk.js.map": "/ivis_traffic/static/js/2.cdbb55ba.chunk.js.map",
+    "main.js": "/ivis_traffic/static/js/main.b01eadd9.chunk.js",
+    "main.js.map": "/ivis_traffic/static/js/main.b01eadd9.chunk.js.map",
+    "runtime-main.js": "/ivis_traffic/static/js/runtime-main.397c876f.js",
+    "runtime-main.js.map": "/ivis_traffic/static/js/runtime-main.397c876f.js.map",
+    "static/js/2.8dc60f3f.chunk.js": "/ivis_traffic/static/js/2.8dc60f3f.chunk.js",
+    "static/js/2.8dc60f3f.chunk.js.map": "/ivis_traffic/static/js/2.8dc60f3f.chunk.js.map",
     "index.html": "/ivis_traffic/index.html",
-    "precache-manifest.ecbb441ca42be29c0ca060e9a1b37d59.js": "/ivis_traffic/precache-manifest.ecbb441ca42be29c0ca060e9a1b37d59.js",
+    "precache-manifest.81fbd224a81d23dbc00a4fa4514ebeab.js": "/ivis_traffic/precache-manifest.81fbd224a81d23dbc00a4fa4514ebeab.js",
     "service-worker.js": "/ivis_traffic/service-worker.js",
-    "static/css/main.91e2d559.chunk.css.map": "/ivis_traffic/static/css/main.91e2d559.chunk.css.map"
-  }
+    "static/css/main.91e2d559.chunk.css.map": "/ivis_traffic/static/css/main.91e2d559.chunk.css.map",
+    "static/js/2.8dc60f3f.chunk.js.LICENSE": "/ivis_traffic/static/js/2.8dc60f3f.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.397c876f.js",
+    "static/js/2.8dc60f3f.chunk.js",
+    "static/css/main.91e2d559.chunk.css",
+    "static/js/main.b01eadd9.chunk.js"
+  ]
 }
