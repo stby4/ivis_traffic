@@ -4,12 +4,12 @@
   "private": true,
   "homepage": "https://stby4.github.io/ivis_traffic",
   "dependencies": {
-    "d3": "^5.12.0",
+    "d3": "^5.14.2",
     "gh-pages": "^2.1.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-faux-dom": "^4.5.0",
-    "react-scripts": "3.1.1",
+    "react-scripts": "3.3.0",
     "topojson": "^3.0.2"
   },
   "scripts": {
@@ -21,7 +21,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "react-test-renderer": "^16.9.0"
+    "react-test-renderer": "^16.12.0"
   },
   "browserslist": {
     "production": [
