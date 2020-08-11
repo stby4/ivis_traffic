@@ -14,7 +14,7 @@ class App extends Component {
         </header>
         <div className="inner">
           <MapsVisualisation className="container" id="visualization1" />
-          <hr class="divider"/>
+          <hr className="divider"/>
           <Visualization2 />
         </div>
         <div id="mapTooltip" className="tooltip" />
