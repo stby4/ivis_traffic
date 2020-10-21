@@ -127,10 +127,10 @@ class Visualization2 extends Component {
           .attr("stroke-width", "1.0px")
           .attr("fill", "none")
           .attr("d", valueline)
-          .on("mouseover", function (d) {
+          .on("mouseover", function (event) {
             tooltip.html(selectedObjektart[i]['Objektart'] + ", " + selectedObjektart[i]['Unfallschwere'] + ", <br/>" + selectedObjektart[i]['Strassenart'] + ", " + selectedObjektart[i]['Unfalltyp'])
-              .style("left", (d3.event.pageX - 2) + "px")
-              .style("top", (d3.event.pageY - 50) + "px")
+              .style("left", (event.pageX - 2) + "px")
+              .style("top", (event.pageY - 50) + "px")
             return tooltip.attr("class", "tooltip");
           })
           .on("mouseout", function (d) {
@@ -153,8 +153,8 @@ class Visualization2 extends Component {
       .attr("d", valueline)
       .on("mouseover", function(d) {	
         tooltip.html(selectedObjektart[0]['Objektart'] +", "+ selectedObjektart[0]['Unfallschwere'] +", <br/>"  + selectedObjektart[0]['Strassenart'] +", "+ selectedObjektart[0]['Unfalltyp'])	
-              .style("left", (d3.event.pageX - 2) + "px")
-              .style("top", (d3.event.pageY - 50) + "px")
+              .style("left", (d.pageX - 2) + "px")
+              .style("top", (d.pageY - 50) + "px")
         return tooltip.attr("class", "tooltip");})					
       .on("mouseout", function(d) {		
         return tooltip.attr("class", "tooltip invisible");});
