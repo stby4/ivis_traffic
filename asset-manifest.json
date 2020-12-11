@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/ivis_traffic/static/css/main.304f8cd1.chunk.css",
+    "main.js": "/ivis_traffic/static/js/main.27e6254b.chunk.js",
+    "main.js.map": "/ivis_traffic/static/js/main.27e6254b.chunk.js.map",
+    "runtime-main.js": "/ivis_traffic/static/js/runtime-main.656c9bff.js",
+    "runtime-main.js.map": "/ivis_traffic/static/js/runtime-main.656c9bff.js.map",
+    "static/js/2.ba56ccc9.chunk.js": "/ivis_traffic/static/js/2.ba56ccc9.chunk.js",
+    "static/js/2.ba56ccc9.chunk.js.map": "/ivis_traffic/static/js/2.ba56ccc9.chunk.js.map",
+    "index.html": "/ivis_traffic/index.html",
+    "precache-manifest.5338ebb0bf1ff56ec967e2134b0582a1.js": "/ivis_traffic/precache-manifest.5338ebb0bf1ff56ec967e2134b0582a1.js",
+    "service-worker.js": "/ivis_traffic/service-worker.js",
+    "static/css/main.304f8cd1.chunk.css.map": "/ivis_traffic/static/css/main.304f8cd1.chunk.css.map",
+    "static/js/2.ba56ccc9.chunk.js.LICENSE.txt": "/ivis_traffic/static/js/2.ba56ccc9.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.656c9bff.js",
+    "static/js/2.ba56ccc9.chunk.js",
+    "static/css/main.304f8cd1.chunk.css",
+    "static/js/main.27e6254b.chunk.js"
+  ]
+}
