@@ -69,6 +69,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
+    if: github.event == 'push'
     
     steps:
       - name: Download artifacts
