@@ -3,6 +3,9 @@ zum Thema Strassenverkehrsunfälle in der Schweiz
 
 von Sandra Amport und Hinrich Kaestner
 
+[![master_CD](https://github.com/stby4/ivis_traffic/actions/workflows/master_CD.yml/badge.svg)](https://github.com/stby4/ivis_traffic/actions/workflows/master_CD.yml)
+[![CodeQL](https://github.com/stby4/ivis_traffic/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/stby4/ivis_traffic/actions/workflows/codeql-analysis.yml)
+
 ## Software deployement
 Unsere Visualisierung ist unter folgendem Link zu finden
 
