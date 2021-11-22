@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/ivis_traffic/static/css/main.9717a2d6.chunk.css",
+    "main.css": "/ivis_traffic/static/css/main.1f370617.chunk.css",
     "main.js": "/ivis_traffic/static/js/main.7d89b9e6.chunk.js",
     "main.js.map": "/ivis_traffic/static/js/main.7d89b9e6.chunk.js.map",
     "runtime-main.js": "/ivis_traffic/static/js/runtime-main.fbcd9480.js",
@@ -8,13 +8,13 @@
     "static/js/2.e6fa79fd.chunk.js": "/ivis_traffic/static/js/2.e6fa79fd.chunk.js",
     "static/js/2.e6fa79fd.chunk.js.map": "/ivis_traffic/static/js/2.e6fa79fd.chunk.js.map",
     "index.html": "/ivis_traffic/index.html",
-    "static/css/main.9717a2d6.chunk.css.map": "/ivis_traffic/static/css/main.9717a2d6.chunk.css.map",
+    "static/css/main.1f370617.chunk.css.map": "/ivis_traffic/static/css/main.1f370617.chunk.css.map",
     "static/js/2.e6fa79fd.chunk.js.LICENSE.txt": "/ivis_traffic/static/js/2.e6fa79fd.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.fbcd9480.js",
     "static/js/2.e6fa79fd.chunk.js",
-    "static/css/main.9717a2d6.chunk.css",
+    "static/css/main.1f370617.chunk.css",
     "static/js/main.7d89b9e6.chunk.js"
   ]
 }
