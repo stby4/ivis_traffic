@@ -5611,7 +5611,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["error-stack-parser", "npm:2.0.6"],
             ["find-up", "npm:5.0.0"],
             ["html-entities", "npm:2.3.3"],
-            ["loader-utils", "npm:2.0.0"],
+            ["loader-utils", "npm:2.0.3"],
             ["react-refresh", "npm:0.11.0"],
             ["schema-utils", "npm:3.0.0"],
             ["sockjs-client", null],
@@ -5945,7 +5945,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@svgr/core", "npm:5.5.0"],
             ["@svgr/plugin-jsx", "npm:5.5.0"],
             ["@svgr/plugin-svgo", "npm:5.5.0"],
-            ["loader-utils", "npm:2.0.0"]
+            ["loader-utils", "npm:2.0.3"]
           ],
           "linkType": "HARD",
         }]
@@ -6953,7 +6953,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/adjust-sourcemap-loader-npm-4.0.0-c8b560af8c-d524ae2358.zip/node_modules/adjust-sourcemap-loader/",
           "packageDependencies": [
             ["adjust-sourcemap-loader", "npm:4.0.0"],
-            ["loader-utils", "npm:2.0.0"],
+            ["loader-utils", "npm:2.0.3"],
             ["regex-parser", "npm:2.2.11"]
           ],
           "linkType": "HARD",
@@ -7460,7 +7460,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/babel__core", null],
             ["@types/webpack", null],
             ["find-cache-dir", "npm:3.3.1"],
-            ["loader-utils", "npm:2.0.0"],
+            ["loader-utils", "npm:2.0.3"],
             ["make-dir", "npm:3.1.0"],
             ["schema-utils", "npm:2.7.1"],
             ["webpack", "virtual:e7b9af6b000fe11ece85b9fdfbfbeb7a1b0f34b8930c8aec394bc54cd1e4284cbb1afd7cd9b5b12f257bac1ba5439b40d06d6d4f714e5a1f90d84c4477181b2e#npm:5.72.1"]
@@ -10912,7 +10912,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["file-loader", "virtual:e7b9af6b000fe11ece85b9fdfbfbeb7a1b0f34b8930c8aec394bc54cd1e4284cbb1afd7cd9b5b12f257bac1ba5439b40d06d6d4f714e5a1f90d84c4477181b2e#npm:6.2.0"],
             ["@types/webpack", null],
-            ["loader-utils", "npm:2.0.0"],
+            ["loader-utils", "npm:2.0.3"],
             ["schema-utils", "npm:3.0.0"],
             ["webpack", "virtual:e7b9af6b000fe11ece85b9fdfbfbeb7a1b0f34b8930c8aec394bc54cd1e4284cbb1afd7cd9b5b12f257bac1ba5439b40d06d6d4f714e5a1f90d84c4477181b2e#npm:5.72.1"]
           ],
@@ -13490,10 +13490,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["loader-utils", [
-        ["npm:2.0.0", {
-          "packageLocation": "./.yarn/cache/loader-utils-npm-2.0.0-cf7d5aadbf-6856423131.zip/node_modules/loader-utils/",
+        ["npm:2.0.3", {
+          "packageLocation": "./.yarn/cache/loader-utils-npm-2.0.3-4d761d6a51-d055c61ce5.zip/node_modules/loader-utils/",
           "packageDependencies": [
-            ["loader-utils", "npm:2.0.0"],
+            ["loader-utils", "npm:2.0.3"],
             ["big.js", "npm:5.2.2"],
             ["emojis-list", "npm:3.0.0"],
             ["json5", "npm:2.2.0"]
@@ -17302,7 +17302,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/rework-visit", null],
             ["adjust-sourcemap-loader", "npm:4.0.0"],
             ["convert-source-map", "npm:1.7.0"],
-            ["loader-utils", "npm:2.0.0"],
+            ["loader-utils", "npm:2.0.3"],
             ["postcss", "npm:7.0.39"],
             ["rework", null],
             ["rework-visit", null],
