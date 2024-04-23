@@ -36,7 +36,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",
           "packageDependencies": [
             ["d3", "npm:6.7.0"],
-            ["gh-pages", "npm:4.0.0"],
+            ["gh-pages", "npm:5.0.0"],
             ["react", "npm:18.2.0"],
             ["react-dom", "virtual:53f265dcbc63e404e61b4b149f15e17025d29bce59b7656e4ee374a8a6021f3191b5484c53155ed10a1b69ffa4fc8022ce0932f45394f32ff30580e4ff3724d4#npm:18.2.0"],
             ["react-faux-dom", "virtual:53f265dcbc63e404e61b4b149f15e17025d29bce59b7656e4ee374a8a6021f3191b5484c53155ed10a1b69ffa4fc8022ce0932f45394f32ff30580e4ff3724d4#npm:4.5.0"],
@@ -7467,18 +7467,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["async", [
-        ["npm:2.6.3", {
-          "packageLocation": "./.yarn/cache/async-npm-2.6.3-2de4150248-5e5561ff8f.zip/node_modules/async/",
-          "packageDependencies": [
-            ["async", "npm:2.6.3"],
-            ["lodash", "npm:4.17.21"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:3.2.3", {
           "packageLocation": "./.yarn/cache/async-npm-3.2.3-e9d6b79c88-c4bee57ab2.zip/node_modules/async/",
           "packageDependencies": [
             ["async", "npm:3.2.3"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:3.2.5", {
+          "packageLocation": "./.yarn/cache/async-npm-3.2.5-f5dbdabdfc-5ec77f1312.zip/node_modules/async/",
+          "packageDependencies": [
+            ["async", "npm:3.2.5"]
           ],
           "linkType": "HARD",
         }]
@@ -10090,10 +10089,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["email-addresses", [
-        ["npm:3.1.0", {
-          "packageLocation": "./.yarn/cache/email-addresses-npm-3.1.0-332eec577b-e911985f09.zip/node_modules/email-addresses/",
+        ["npm:5.0.0", {
+          "packageLocation": "./.yarn/cache/email-addresses-npm-5.0.0-218d2e9289-e58a510e9c.zip/node_modules/email-addresses/",
           "packageDependencies": [
-            ["email-addresses", "npm:3.1.0"]
+            ["email-addresses", "npm:5.0.0"]
           ],
           "linkType": "HARD",
         }]
@@ -11493,13 +11492,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["gh-pages", [
-        ["npm:4.0.0", {
-          "packageLocation": "./.yarn/cache/gh-pages-npm-4.0.0-1490bfc5d9-255648eb27.zip/node_modules/gh-pages/",
+        ["npm:5.0.0", {
+          "packageLocation": "./.yarn/cache/gh-pages-npm-5.0.0-85e52a94f0-d766aef02d.zip/node_modules/gh-pages/",
           "packageDependencies": [
-            ["gh-pages", "npm:4.0.0"],
-            ["async", "npm:2.6.3"],
+            ["gh-pages", "npm:5.0.0"],
+            ["async", "npm:3.2.5"],
             ["commander", "npm:2.20.3"],
-            ["email-addresses", "npm:3.1.0"],
+            ["email-addresses", "npm:5.0.0"],
             ["filenamify", "npm:4.3.0"],
             ["find-cache-dir", "npm:3.3.1"],
             ["fs-extra", "npm:8.1.0"],
@@ -12642,7 +12641,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["ivis-traffic", "workspace:."],
             ["d3", "npm:6.7.0"],
-            ["gh-pages", "npm:4.0.0"],
+            ["gh-pages", "npm:5.0.0"],
             ["react", "npm:18.2.0"],
             ["react-dom", "virtual:53f265dcbc63e404e61b4b149f15e17025d29bce59b7656e4ee374a8a6021f3191b5484c53155ed10a1b69ffa4fc8022ce0932f45394f32ff30580e4ff3724d4#npm:18.2.0"],
             ["react-faux-dom", "virtual:53f265dcbc63e404e61b4b149f15e17025d29bce59b7656e4ee374a8a6021f3191b5484c53155ed10a1b69ffa4fc8022ce0932f45394f32ff30580e4ff3724d4#npm:4.5.0"],
