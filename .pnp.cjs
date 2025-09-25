@@ -4821,12 +4821,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@babel/runtime-corejs3", [
-        ["npm:7.14.0", {
-          "packageLocation": "./.yarn/cache/@babel-runtime-corejs3-npm-7.14.0-369a72598c-a44a75be45.zip/node_modules/@babel/runtime-corejs3/",
+        ["npm:7.28.4", {
+          "packageLocation": "./.yarn/cache/@babel-runtime-corejs3-npm-7.28.4-dfda5f4538-caf960026b.zip/node_modules/@babel/runtime-corejs3/",
           "packageDependencies": [
-            ["@babel/runtime-corejs3", "npm:7.14.0"],
-            ["core-js-pure", "npm:3.12.1"],
-            ["regenerator-runtime", "npm:0.13.7"]
+            ["@babel/runtime-corejs3", "npm:7.28.4"],
+            ["core-js-pure", "npm:3.45.1"]
           ],
           "linkType": "HARD",
         }]
@@ -7380,7 +7379,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["aria-query", "npm:4.2.2"],
             ["@babel/runtime", "npm:7.28.4"],
-            ["@babel/runtime-corejs3", "npm:7.14.0"]
+            ["@babel/runtime-corejs3", "npm:7.28.4"]
           ],
           "linkType": "HARD",
         }]
@@ -8761,17 +8760,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["core-js-pure", [
-        ["npm:3.12.1", {
-          "packageLocation": "./.yarn/unplugged/core-js-pure-npm-3.12.1-ac3be20f93/node_modules/core-js-pure/",
-          "packageDependencies": [
-            ["core-js-pure", "npm:3.12.1"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:3.22.6", {
           "packageLocation": "./.yarn/unplugged/core-js-pure-npm-3.22.6-c7c90c67bb/node_modules/core-js-pure/",
           "packageDependencies": [
             ["core-js-pure", "npm:3.22.6"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:3.45.1", {
+          "packageLocation": "./.yarn/unplugged/core-js-pure-npm-3.45.1-a8d5553615/node_modules/core-js-pure/",
+          "packageDependencies": [
+            ["core-js-pure", "npm:3.45.1"]
           ],
           "linkType": "HARD",
         }]
@@ -17382,13 +17381,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["regenerator-runtime", [
-        ["npm:0.13.7", {
-          "packageLocation": "./.yarn/cache/regenerator-runtime-npm-0.13.7-41bcbe64ea-52b66e6669.zip/node_modules/regenerator-runtime/",
-          "packageDependencies": [
-            ["regenerator-runtime", "npm:0.13.7"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:0.13.9", {
           "packageLocation": "./.yarn/cache/regenerator-runtime-npm-0.13.9-6d02340eec-65ed455fe5.zip/node_modules/regenerator-runtime/",
           "packageDependencies": [
